@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%; /* Rich Black */
+    --foreground: 0 0% 100%; /* White */
+    --border: 0 0% 10%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+    scrollbar-width: none; /* For Firefox */
+  }
+  body::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+  }
+}
+
+/* Keyframe Animations */
+@keyframes text-reveal {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aurora {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes scroll-reviews {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Component Styles */
+@layer components {
+  .nav-link {
+    @apply text-gray-300 hover:text-white transition-colors duration-300 relative;
+  }
+
+  .nav-link::after {
+    content: "";
+    @apply absolute left-0 w-0 h-0.5 bg-gradient-to-r from-brand-red to-red-500 transition-all duration-300;
+    bottom: -4px;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .cta-button {
+    @apply bg-gradient-to-r from-brand-red to-red-500 text-white font-semibold rounded-lg shadow-lg shadow-brand-red/20 hover:shadow-xl hover:shadow-brand-red/40 transform hover:scale-105 transition-all duration-300;
+  }
+
+  .cta-button-secondary {
+    @apply bg-white/10 border border-white/20 text-white font-semibold rounded-lg backdrop-blur-sm hover:bg-white/20 transform hover:scale-105 transition-all duration-300;
+  }
+
+  .hero-gradient-text {
+    @apply bg-gradient-to-r from-brand-red via-red-400 to-orange-400 bg-clip-text text-transparent;
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 15px theme("colors.brand-red / 30%"), 0 0 30px theme("colors.brand-red / 20%");
+  }
+
+  .aurora-background {
+    @apply absolute inset-0 z-0 opacity-20;
+    background: radial-gradient(at 20% 30%, theme("colors.brand-red") 0px, transparent 50%),
+      radial-gradient(at 80% 70%, theme("colors.white / 50%") 0px, transparent 50%),
+      radial-gradient(at 50% 50%, theme("colors.brand-red / 50%") 0px, transparent 50%);
+    animation: aurora 20s infinite alternate;
+  }
+
+  .animate-text-reveal {
+    @apply inline-block overflow-hidden;
+    animation: text-reveal 1s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 1s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .glass-card {
+    @apply bg-white/5 border border-white/10 rounded-2xl backdrop-blur-lg transition-all duration-500 hover:bg-white/10 hover:border-white/20 transform hover:-translate-y-2;
+  }
+
+  .icon-glow {
+    box-shadow: 0 0 20px theme("colors.brand-red / 50%");
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold mb-4;
+  }
+
+  .section-gradient-text {
+    @apply bg-gradient-to-r from-brand-red to-red-400 bg-clip-text text-transparent;
+    text-shadow: 0 0 15px theme("colors.brand-red / 30%");
+  }
+
+  .section-subtitle {
+    @apply text-lg md:text-xl text-gray-400 max-w-3xl mx-auto;
+  }
+
+  .horizontal-scroll-container {
+    @apply w-full overflow-x-auto pb-8;
+    scrollbar-width: none;
+  }
+  .horizontal-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .horizontal-scroll-section {
+    @apply w-full flex-shrink-0 max-w-5xl mx-auto;
+  }
+
+  .capability-title {
+    @apply text-3xl font-bold text-white mb-4;
+  }
+  .capability-desc {
+    @apply text-lg text-gray-400;
+  }
+  .capability-item {
+    @apply flex items-center text-xl text-gray-300;
+  }
+  .capability-visual {
+    @apply h-96 rounded-2xl flex items-center justify-center;
+  }
+
+  .case-study-card {
+    @apply relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 transition-all duration-500 hover:bg-white/10 hover:border-white/20 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-red/10;
+  }
+  .case-study-metric {
+    @apply bg-gradient-to-r from-brand-red to-red-400 bg-clip-text text-transparent;
+  }
+
+  .scrolling-reviews {
+    @apply w-full overflow-hidden relative;
+  }
+  .scrolling-reviews:before,
+  .scrolling-reviews:after {
+    content: "";
+    @apply absolute top-0 bottom-0 w-48 z-10;
+    background: linear-gradient(to right, hsl(var(--background)) 0%, hsla(var(--background), 0) 100%);
+  }
+  .scrolling-reviews:before {
+    @apply left-0;
+  }
+  .scrolling-reviews:after {
+    @apply right-0;
+    background: linear-gradient(to left, hsl(var(--background)) 0%, hsla(var(--background), 0) 100%);
+  }
+
+  .scrolling-reviews-track {
+    @apply flex w-max;
+    animation: scroll-reviews 40s linear infinite;
+  }
+
+  .review-card {
+    @apply w-96 flex-shrink-0 p-8 mx-4 bg-white/5 border border-white/10 rounded-2xl;
+  }
+
+  .cta-card {
+    @apply relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-red/20 via-brand-green/10 to-brand-red/20 border border-white/10;
+  }
+}
