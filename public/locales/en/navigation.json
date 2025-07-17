@@ -1,0 +1,11 @@
+{
+  "nav": {
+    "home": "Home",
+    "capabilities": "Capabilities",
+    "cases": "Cases",
+    "about": "About",
+    "getStarted": "Get Started",
+    "security": "Security",
+    "contact": "Contact"
+  }
+} 

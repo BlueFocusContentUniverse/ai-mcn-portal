@@ -1,66 +1,71 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
 import {
   ArrowRight,
+  BarChart3,
+  Briefcase,
+  Cpu,
+  Database,
+  Eye,
+  Globe,
+  Layers,
+  Mouse,
+  Network,
+  Play,
+  Settings,
+  Share2,
+  Shield,
+  UserPlus,
   Users,
   Video,
-  Shield,
-  Globe,
-  Database,
-  BarChart3,
-  Settings,
-  Cpu,
-  Network,
-  Eye,
-  Layers,
-  Share2,
-  UserPlus,
-  Play,
-  Briefcase,
-  Mouse,
-} from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { Button } from "@/components/ui/button";
 
 // A custom hook to detect if an element is in the viewport
 const useOnScreen = (options: IntersectionObserverInit) => {
-  const ref = useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        setIsVisible(true)
+        setIsVisible(true);
         if (ref.current) {
-          observer.unobserve(ref.current)
+          observer.unobserve(ref.current);
         }
       }
-    }, options)
+    }, options);
 
     if (ref.current) {
-      observer.observe(ref.current)
+      observer.observe(ref.current);
     }
 
     return () => {
       if (ref.current) {
-        observer.unobserve(ref.current)
+        observer.unobserve(ref.current);
       }
-    }
-  }, [ref, options])
+    };
+  }, [ref, options]);
 
-  return [ref, isVisible] as const
-}
+  return [ref, isVisible] as const;
+};
 
 export default function HomePage() {
-  const [heroRef, heroIsVisible] = useOnScreen({ threshold: 0.1 })
-  const [introRef, introIsVisible] = useOnScreen({ threshold: 0.1 })
-  const [capabilitiesRef, capabilitiesIsVisible] = useOnScreen({ threshold: 0.1 })
-  const [casesRef, casesIsVisible] = useOnScreen({ threshold: 0.1 })
-  const [reviewsRef, reviewsIsVisible] = useOnScreen({ threshold: 0.1 })
-  const [securityRef, securityIsVisible] = useOnScreen({ threshold: 0.1 })
-  const [joinRef, joinIsVisible] = useOnScreen({ threshold: 0.1 })
+  const { t } = useTranslation(["home", "navigation"]);
+  const [heroRef, heroIsVisible] = useOnScreen({ threshold: 0.1 });
+  const [introRef, introIsVisible] = useOnScreen({ threshold: 0.1 });
+  const [capabilitiesRef, capabilitiesIsVisible] = useOnScreen({ threshold: 0.1 });
+  const [casesRef, casesIsVisible] = useOnScreen({ threshold: 0.1 });
+  const [reviewsRef, reviewsIsVisible] = useOnScreen({ threshold: 0.1 });
+  const [securityRef, securityIsVisible] = useOnScreen({ threshold: 0.1 });
+  const [joinRef, joinIsVisible] = useOnScreen({ threshold: 0.1 });
 
   return (
     <div className="min-h-screen bg-brand-black text-brand-white overflow-x-hidden">
@@ -76,16 +81,17 @@ export default function HomePage() {
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <Link href="#capabilities" className="nav-link">
-                Capabilities
+                {t("nav.capabilities", { ns: "navigation" })}
               </Link>
               <Link href="#cases" className="nav-link">
-                Cases
+                {t("nav.cases", { ns: "navigation" })}
               </Link>
               <Link href="#about" className="nav-link">
-                About
+                {t("nav.about", { ns: "navigation" })}
               </Link>
+              <LanguageSwitcher />
               <Button className="cta-button">
-                Get Started <ArrowRight className="ml-2 w-4 h-4" />
+                {t("nav.getStarted", { ns: "navigation" })} <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </div>
           </div>
@@ -102,25 +108,21 @@ export default function HomePage() {
           <div className="text-center z-10 px-4">
             <h1 className="text-5xl md:text-8xl font-bold mb-6 text-shadow-glow">
               <div className="animate-text-reveal [animation-delay:0.2s]">
-                <span className="hero-gradient-text">AI-Powered</span>
-              </div>
-              <div className="animate-text-reveal [animation-delay:0.6s]">
-                <span className="hero-gradient-text">Content Empire</span>
+                <span className="hero-gradient-text">{t("hero.title")}</span>
               </div>
             </h1>
             <p className="text-xl text-gray-300 mb-12 max-w-4xl mx-auto animate-fade-in-up [animation-delay:1s]">
-              From batch content production to global distribution - we revolutionize how brands create, manage, and
-              distribute content at scale.
+              {t("hero.subtitle")}
             </p>
             <div className="animate-fade-in-up [animation-delay:1.2s]">
               <Button size="lg" className="cta-button text-lg px-8 py-6">
-                Discover the Future
+                {t("hero.cta")}
                 <Play className="ml-3 w-5 h-5" />
               </Button>
             </div>
           </div>
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 animate-fade-in [animation-delay:1.5s]">
-            <span className="text-sm text-gray-400">Scroll</span>
+            <span className="text-sm text-gray-400">{t("hero.scroll")}</span>
             <Mouse className="w-6 h-6 text-gray-400 animate-bounce" />
           </div>
         </section>
@@ -134,26 +136,26 @@ export default function HomePage() {
             {[
               {
                 icon: Video,
-                title: "Batch Production",
-                desc: "AI-powered mass content generation",
+                title: t("features.batchProduction.title"),
+                desc: t("features.batchProduction.desc"),
                 delay: "200ms",
               },
               {
                 icon: Settings,
-                title: "Self-developed Pipeline",
-                desc: "Proprietary editing and processing",
+                title: t("features.pipeline.title"),
+                desc: t("features.pipeline.desc"),
                 delay: "400ms",
               },
               {
                 icon: Globe,
-                title: "Global Distribution",
-                desc: "Worldwide multi-platform reach",
+                title: t("features.distribution.title"),
+                desc: t("features.distribution.desc"),
                 delay: "600ms",
               },
               {
                 icon: Database,
-                title: "Brand Asset Management",
-                desc: "Centralized brand consistency",
+                title: t("features.management.title"),
+                desc: t("features.management.desc"),
                 delay: "800ms",
               },
             ].map((feature, index) => (
@@ -181,9 +183,9 @@ export default function HomePage() {
         >
           <div className="max-w-7xl mx-auto text-center mb-16 px-4">
             <h2 className="section-title">
-              <span className="section-gradient-text">Product Capabilities</span>
+              <span className="section-gradient-text">{t("capabilities.title")}</span>
             </h2>
-            <p className="section-subtitle">Three core capabilities that power your content strategy.</p>
+            <p className="section-subtitle">{t("capabilities.subtitle")}</p>
           </div>
           <div className="horizontal-scroll-container">
             <div className="flex">
@@ -191,10 +193,8 @@ export default function HomePage() {
               <div className="horizontal-scroll-section">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   <div className="p-8">
-                    <h3 className="capability-title">Creative Capabilities</h3>
-                    <p className="capability-desc">
-                      Unleash boundless creativity with AI that understands trends, context, and brand identity.
-                    </p>
+                    <h3 className="capability-title">{t("capabilities.creative.title")}</h3>
+                    <p className="capability-desc">{t("capabilities.creative.desc")}</p>
                     <ul className="mt-8 space-y-4">
                       <li className="capability-item">
                         <Eye className="w-6 h-6 mr-4 text-brand-red" /> Global Trend Capture
@@ -216,10 +216,8 @@ export default function HomePage() {
               <div className="horizontal-scroll-section">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   <div className="p-8">
-                    <h3 className="capability-title">Operational Capabilities</h3>
-                    <p className="capability-desc">
-                      Achieve unparalleled efficiency with a system that learns, adapts, and optimizes autonomously.
-                    </p>
+                    <h3 className="capability-title">{t("capabilities.operational.title")}</h3>
+                    <p className="capability-desc">{t("capabilities.operational.desc")}</p>
                     <ul className="mt-8 space-y-4">
                       <li className="capability-item">
                         <Cpu className="w-6 h-6 mr-4 text-white" /> Data-Driven Evolution
@@ -241,10 +239,8 @@ export default function HomePage() {
               <div className="horizontal-scroll-section">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   <div className="p-8">
-                    <h3 className="capability-title">Publishing Capabilities</h3>
-                    <p className="capability-desc">
-                      Maximize your reach with intelligent, automated, and scalable distribution across all platforms.
-                    </p>
+                    <h3 className="capability-title">{t("capabilities.publishing.title")}</h3>
+                    <p className="capability-desc">{t("capabilities.publishing.desc")}</p>
                     <ul className="mt-8 space-y-4">
                       <li className="capability-item">
                         <Share2 className="w-6 h-6 mr-4 text-red-400" /> One-Click Multi-Platform
@@ -257,7 +253,7 @@ export default function HomePage() {
                       </li>
                     </ul>
                   </div>
-                  <div className="capability-visual bg-gradient-to-br from-red-500/20 to-orange-500/20">
+                  <div className="capability-visual bg-gradient-to-br from-red-400/20 to-red-600/20">
                     <Share2 className="w-32 h-32 text-red-400 opacity-50" />
                   </div>
                 </div>
@@ -430,13 +426,13 @@ export default function HomePage() {
             </div>
             <div className="flex space-x-8">
               <Link href="#about" className="nav-link">
-                About
+                {t("nav.about", { ns: "navigation" })}
               </Link>
               <Link href="#security" className="nav-link">
-                Security
+                {t("nav.security", { ns: "navigation" })}
               </Link>
               <Link href="#contact" className="nav-link">
-                Contact
+                {t("nav.contact", { ns: "navigation" })}
               </Link>
             </div>
             <p className="text-gray-500">&copy; 2024 Tomato Planet. All rights reserved.</p>
@@ -444,5 +440,5 @@ export default function HomePage() {
         </footer>
       </main>
     </div>
-  )
+  );
 }

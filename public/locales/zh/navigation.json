@@ -1,0 +1,11 @@
+{
+  "nav": {
+    "home": "首页",
+    "capabilities": "能力",
+    "cases": "案例",
+    "about": "关于",
+    "getStarted": "开始使用",
+    "security": "安全",
+    "contact": "联系"
+  }
+} 

@@ -1,0 +1,69 @@
+{
+  "backToHome": "Back to Home",
+  "hero": {
+    "title": "About Tomato Planet",
+    "subtitle": "We're revolutionizing content creation and distribution through the power of AI and human creativity."
+  },
+  "mission": {
+    "title": "Our Mission",
+    "description": "To democratize content creation and empower creators worldwide with cutting-edge AI technology, enabling them to reach global audiences and build sustainable careers.",
+    "values": {
+      "creativity": {
+        "title": "Creativity First",
+        "desc": "We believe in the power of human creativity enhanced by AI."
+      },
+      "global": {
+        "title": "Global Reach",
+        "desc": "Connecting creators with audiences worldwide."
+      }
+    },
+    "stats": {
+      "title": "Our Impact",
+      "creators": "Creators",
+      "views": "Views"
+    }
+  },
+  "team": {
+    "title": "Meet Our Team",
+    "subtitle": "A diverse group of innovators, creators, and technologists passionate about the future of content.",
+    "members": {
+      "ceo": {
+        "role": "CEO & Founder",
+        "bio": "Former Google AI researcher with 10+ years in content creation and distribution."
+      },
+      "cto": {
+        "role": "CTO",
+        "bio": "Expert in AI/ML with experience building scalable content platforms."
+      },
+      "cpo": {
+        "role": "CPO",
+        "bio": "Creative director with deep understanding of creator economy and brand partnerships."
+      }
+    }
+  },
+  "values": {
+    "title": "Our Values",
+    "innovation": {
+      "title": "Innovation",
+      "desc": "Pushing boundaries in AI and content creation."
+    },
+    "creativity": {
+      "title": "Creativity",
+      "desc": "Fostering artistic expression and unique content."
+    },
+    "community": {
+      "title": "Community",
+      "desc": "Building supportive networks for creators."
+    },
+    "excellence": {
+      "title": "Excellence",
+      "desc": "Delivering the highest quality in everything we do."
+    }
+  },
+  "cta": {
+    "title": "Join Our Mission",
+    "subtitle": "Whether you're a creator looking to grow or a brand ready to innovate, we're here to help you succeed.",
+    "getStarted": "Get Started",
+    "contact": "Contact Us"
+  }
+} 

@@ -1,0 +1,57 @@
+{
+  "hero": {
+    "title": "AI驱动的内容帝国",
+    "subtitle": "从批量内容生产到全球分发 - 我们彻底改变了品牌创建、管理和分发内容的方式。",
+    "cta": "探索未来",
+    "scroll": "滚动"
+  },
+  "features": {
+    "batchProduction": {
+      "title": "批量生产",
+      "desc": "AI驱动的海量内容生成"
+    },
+    "pipeline": {
+      "title": "自主研发管道",
+      "desc": "专有编辑和处理技术"
+    },
+    "distribution": {
+      "title": "全球分发",
+      "desc": "全球多平台覆盖"
+    },
+    "management": {
+      "title": "品牌资产管理",
+      "desc": "集中化品牌一致性"
+    }
+  },
+  "capabilities": {
+    "title": "产品能力",
+    "subtitle": "为您的内容策略提供动力的三大核心能力。",
+    "creative": {
+      "title": "创意能力",
+      "desc": "释放无限创意，AI理解趋势、语境和品牌身份。",
+      "features": [
+        "全球趋势捕捉",
+        "内容个性化",
+        "MCP + API集成"
+      ]
+    },
+    "operational": {
+      "title": "运营能力",
+      "desc": "通过自主学习、适应和自主优化的系统实现无与伦比的效率。",
+      "features": [
+        "数据驱动演进",
+        "高级分析仪表板",
+        "多层优化"
+      ]
+    },
+    "publishing": {
+      "title": "发布能力",
+      "desc": "通过智能、自动化和可扩展的分发最大化您的覆盖范围。",
+      "features": [
+        "一键多平台",
+        "智能调度",
+        "性能分析"
+      ]
+    }
+  }
+} 

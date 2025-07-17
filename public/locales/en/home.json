@@ -1,0 +1,57 @@
+{
+  "hero": {
+    "title": "AI-Powered Content Empire",
+    "subtitle": "From batch content production to global distribution - we revolutionize how brands create, manage, and distribute content at scale.",
+    "cta": "Discover the Future",
+    "scroll": "Scroll"
+  },
+  "features": {
+    "batchProduction": {
+      "title": "Batch Production",
+      "desc": "AI-powered mass content generation"
+    },
+    "pipeline": {
+      "title": "Self-developed Pipeline",
+      "desc": "Proprietary editing and processing"
+    },
+    "distribution": {
+      "title": "Global Distribution",
+      "desc": "Worldwide multi-platform reach"
+    },
+    "management": {
+      "title": "Brand Asset Management",
+      "desc": "Centralized brand consistency"
+    }
+  },
+  "capabilities": {
+    "title": "Product Capabilities",
+    "subtitle": "Three core capabilities that power your content strategy.",
+    "creative": {
+      "title": "Creative Capabilities",
+      "desc": "Unleash boundless creativity with AI that understands trends, context, and brand identity.",
+      "features": [
+        "Global Trend Capture",
+        "Content Personalization",
+        "MCP + API Integration"
+      ]
+    },
+    "operational": {
+      "title": "Operational Capabilities",
+      "desc": "Achieve unparalleled efficiency with a system that learns, adapts, and optimizes autonomously.",
+      "features": [
+        "Data-Driven Evolution",
+        "Advanced Analytics Dashboard",
+        "Multi-layered Optimization"
+      ]
+    },
+    "publishing": {
+      "title": "Publishing Capabilities",
+      "desc": "Maximize your reach with intelligent, automated, and scalable distribution across all platforms.",
+      "features": [
+        "One-Click Multi-Platform",
+        "Intelligent Scheduling",
+        "Performance Analytics"
+      ]
+    }
+  }
+} 
