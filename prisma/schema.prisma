@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+}
+
+model CreatorApplication {
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Contact Information
+  contactType     ContactType
+  email           String?
+  phoneCountryCode String?
+  phoneNumber     String?
+
+  // Social Media Information
+  platform        SocialMediaPlatform
+  otherPlatform   String?
+  socialMediaId   String
+
+  // Application Status
+  status          ApplicationStatus @default(PENDING)
+  notes           String?
+
+  @@map("creator_applications")
+}
+
+model BrandApplication {
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Brand Information
+  brandName       String
+  industry        Industry
+  otherIndustry   String?
+  companySize     CompanySize
+  website         String?
+  description     String
+
+  // Contact Information
+  contactType     ContactType
+  email           String?
+  phoneCountryCode String?
+  phoneNumber     String?
+  contactName     String
+  contactTitle    String
+
+  // Application Status
+  status          ApplicationStatus @default(PENDING)
+  notes           String?
+
+  @@map("brand_applications")
+}
+
+enum ContactType {
+  EMAIL
+  PHONE
+}
+
+enum SocialMediaPlatform {
+  TIKTOK
+  INSTAGRAM
+  YOUTUBE
+  TWITTER
+  OTHER
+}
+
+enum Industry {
+  FASHION
+  BEAUTY
+  TECHNOLOGY
+  FOOD
+  FITNESS
+  EDUCATION
+  ENTERTAINMENT
+  FINANCE
+  HEALTHCARE
+  AUTOMOTIVE
+  TRAVEL
+  SPORTS
+  OTHER
+}
+
+enum CompanySize {
+  STARTUP
+  SMALL
+  MEDIUM
+  LARGE
+  ENTERPRISE
+}
+
+enum ApplicationStatus {
+  PENDING
+  REVIEWING
+  APPROVED
+  REJECTED
+  CONTACTED
+}

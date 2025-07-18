@@ -19,12 +19,15 @@ import {
   Users,
   Video,
 } from "lucide-react";
+import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { BrandApplicationModal } from "@/components/BrandApplicationModal";
+import { CreatorApplicationModal } from "@/components/CreatorApplicationModal";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Button } from "@/components/ui/button";
 
@@ -67,10 +70,35 @@ export default function HomePage() {
   const [securityRef, securityIsVisible] = useOnScreen({ threshold: 0.1 });
   const [joinRef, joinIsVisible] = useOnScreen({ threshold: 0.1 });
 
+  // Modal states
+  const [creatorModalOpen, setCreatorModalOpen] = useState(false);
+  const [brandModalOpen, setBrandModalOpen] = useState(false);
+
+  // Scroll state for nav bar
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Handle scroll for nav bar
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 50);
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-brand-black text-brand-white overflow-x-hidden">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-brand-black/30 backdrop-blur-lg border-b border-white/10">
+      <motion.nav
+        className="fixed top-0 left-0 right-0 z-50 bg-brand-black/30 backdrop-blur-lg border-b border-white/10"
+        initial={{ y: 0 }}
+        animate={{ y: isScrolled ? -100 : 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-3">
@@ -78,25 +106,24 @@ export default function HomePage() {
               <span className="text-2xl font-bold bg-gradient-to-r from-brand-red to-red-400 bg-clip-text text-transparent">
                 Tomato Planet
               </span>
+              <div className="flex items-center space-x-8 ml-8">
+                <Link href="#capabilities" className="nav-link">
+                  {t("nav.capabilities", { ns: "navigation" })}
+                </Link>
+                <Link href="#cases" className="nav-link">
+                  {t("nav.cases", { ns: "navigation" })}
+                </Link>
+                <Link href="/about" className="nav-link">
+                  {t("nav.about", { ns: "navigation" })}
+                </Link>
+              </div>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <Link href="#capabilities" className="nav-link">
-                {t("nav.capabilities", { ns: "navigation" })}
-              </Link>
-              <Link href="#cases" className="nav-link">
-                {t("nav.cases", { ns: "navigation" })}
-              </Link>
-              <Link href="#about" className="nav-link">
-                {t("nav.about", { ns: "navigation" })}
-              </Link>
               <LanguageSwitcher />
-              <Button className="cta-button">
-                {t("nav.getStarted", { ns: "navigation" })} <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
             </div>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       <main className="pt-20">
         {/* Hero Section */}
@@ -104,27 +131,58 @@ export default function HomePage() {
           ref={heroRef}
           className="h-[calc(100vh-5rem)] flex items-center justify-center relative overflow-hidden"
         >
-          <div className="aurora-background"></div>
+          {/* Video Background */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
+            style={{ filter: "brightness(0.3) contrast(1.2)" }}
+          >
+            <source src="/video/hero-video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          {/* Overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/40 z-0"></div>
           <div className="text-center z-10 px-4">
             <h1 className="text-5xl md:text-8xl font-bold mb-6 text-shadow-glow">
-              <div className="animate-text-reveal [animation-delay:0.2s]">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
                 <span className="hero-gradient-text">{t("hero.title")}</span>
-              </div>
+              </motion.div>
             </h1>
-            <p className="text-xl text-gray-300 mb-12 max-w-4xl mx-auto animate-fade-in-up [animation-delay:1s]">
+            <motion.p
+              className="text-xl text-gray-300 mb-12 max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
+            >
               {t("hero.subtitle")}
-            </p>
-            <div className="animate-fade-in-up [animation-delay:1.2s]">
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+            >
               <Button size="lg" className="cta-button text-lg px-8 py-6">
                 {t("hero.cta")}
                 <Play className="ml-3 w-5 h-5" />
               </Button>
-            </div>
+            </motion.div>
           </div>
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 animate-fade-in [animation-delay:1.5s]">
+          <motion.div
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.5 }}
+          >
             <span className="text-sm text-gray-400">{t("hero.scroll")}</span>
             <Mouse className="w-6 h-6 text-gray-400 animate-bounce" />
-          </div>
+          </motion.div>
         </section>
 
         {/* Intro Section */}
@@ -339,7 +397,7 @@ export default function HomePage() {
                 },
               ].map((review, index) => (
                 <div key={index} className="review-card">
-                  <p className="text-lg text-gray-300 mb-6">"{review.quote}"</p>
+                  <p className="text-lg text-gray-300 mb-6">&ldquo;{review.quote}&rdquo;</p>
                   <p className="font-semibold text-white">{review.author}</p>
                 </div>
               ))}
@@ -362,7 +420,7 @@ export default function HomePage() {
                 },
               ].map((review, index) => (
                 <div key={`dup-${index}`} className="review-card">
-                  <p className="text-lg text-gray-300 mb-6">"{review.quote}"</p>
+                  <p className="text-lg text-gray-300 mb-6">&ldquo;{review.quote}&rdquo;</p>
                   <p className="font-semibold text-white">{review.author}</p>
                 </div>
               ))}
@@ -402,13 +460,13 @@ export default function HomePage() {
               <div className="p-12 text-center">
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Join the Content Revolution</h2>
                 <p className="text-xl text-gray-300 mb-10">
-                  Whether you're a creator looking to monetize or a brand ready to scale, your journey starts here.
+                  Whether you&apos;re a creator looking to monetize or a brand ready to scale, your journey starts here.
                 </p>
                 <div className="flex flex-col md:flex-row justify-center gap-6">
-                  <Button size="lg" className="cta-button-secondary">
+                  <Button size="lg" className="cta-button-secondary" onClick={() => setCreatorModalOpen(true)}>
                     <UserPlus className="mr-3" /> Apply as a Creator
                   </Button>
-                  <Button size="lg" className="cta-button">
+                  <Button size="lg" className="cta-button" onClick={() => setBrandModalOpen(true)}>
                     <Briefcase className="mr-3" /> Partner as a Brand
                   </Button>
                 </div>
@@ -435,10 +493,14 @@ export default function HomePage() {
                 {t("nav.contact", { ns: "navigation" })}
               </Link>
             </div>
-            <p className="text-gray-500">&copy; 2024 Tomato Planet. All rights reserved.</p>
+            <p className="text-gray-500">&copy; {new Date().getFullYear()} Tomato Planet. All rights reserved.</p>
           </div>
         </footer>
       </main>
+
+      {/* Application Modals */}
+      <CreatorApplicationModal open={creatorModalOpen} onOpenChange={setCreatorModalOpen} />
+      <BrandApplicationModal open={brandModalOpen} onOpenChange={setBrandModalOpen} />
     </div>
   );
 }

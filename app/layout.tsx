@@ -14,6 +14,27 @@ export const metadata: Metadata = {
   title: "Tomato AI MCN - The Future of Content",
   description: "Tomato is an AI MCN platform.",
   generator: "Tomato",
+  icons: {
+    icon: [
+      {
+        url: "/logo.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+      {
+        url: "/logo.png",
+        sizes: "16x16",
+        type: "image/png",
+      },
+    ],
+    apple: [
+      {
+        url: "/logo.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
 };
 
 export default async function RootLayout({
@@ -26,7 +47,7 @@ export default async function RootLayout({
 
   return (
     <html lang={lng ?? "en"} dir={dir(lng ?? "en")} className="dark">
-      <body className={cn("min-h-screen bg-background font-sans antialiased")}>
+      <body className={cn("min-h-screen bg-background antialiased")}>
         <I18NProvider locale={lng ?? "en"}>
           <CookiesProviderWrapper>{children}</CookiesProviderWrapper>
         </I18NProvider>

@@ -24,13 +24,13 @@ export default function AboutPage() {
               </span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
+              <LanguageSwitcher />
               <Link href="/" className="nav-link">
                 {t("nav.home", { ns: "navigation", defaultValue: "Home" })}
               </Link>
               <Link href="/about" className="nav-link text-brand-red">
                 {t("nav.about", { ns: "navigation" })}
               </Link>
-              <LanguageSwitcher />
             </div>
           </div>
         </div>
@@ -40,14 +40,6 @@ export default function AboutPage() {
         {/* Hero Section */}
         <section className="py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <Link
-              href="/"
-              className="inline-flex items-center text-brand-red hover:text-red-400 mb-8 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              {t("backToHome", { defaultValue: "Back to Home" })}
-            </Link>
-
             <h1 className="text-5xl md:text-7xl font-bold mb-8 text-shadow-glow">
               <span className="hero-gradient-text">{t("hero.title", { defaultValue: "About Tomato Planet" })}</span>
             </h1>
@@ -230,32 +222,24 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="cta-card">
-              <div className="p-12">
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                  {t("cta.title", { defaultValue: "Join Our Mission" })}
-                </h2>
-                <p className="text-xl text-gray-300 mb-10">
-                  {t("cta.subtitle", {
-                    defaultValue:
-                      "Whether you're a creator looking to grow or a brand ready to innovate, we're here to help you succeed.",
-                  })}
-                </p>
-                <div className="flex flex-col md:flex-row justify-center gap-6">
-                  <Button size="lg" className="cta-button">
-                    {t("cta.getStarted", { defaultValue: "Get Started" })}
-                  </Button>
-                  <Button size="lg" className="cta-button-secondary">
-                    {t("cta.contact", { defaultValue: "Contact Us" })}
-                  </Button>
-                </div>
-              </div>
+        {/* Footer */}
+        <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-white/10">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="flex items-center space-x-3">
+              <Image src="/logo.png" alt="AI MCN Logo" width={32} height={32} />
+              <span className="text-xl font-bold text-white">Tomato Planet</span>
             </div>
+            <div className="flex space-x-8">
+              <Link href="/about" className="nav-link">
+                {t("nav.about", { ns: "navigation" })}
+              </Link>
+              <Link href="#contact" className="nav-link">
+                {t("nav.contact", { ns: "navigation" })}
+              </Link>
+            </div>
+            <p className="text-gray-500">&copy; {new Date().getFullYear()} Tomato Planet. All rights reserved.</p>
           </div>
-        </section>
+        </footer>
       </main>
     </div>
   );

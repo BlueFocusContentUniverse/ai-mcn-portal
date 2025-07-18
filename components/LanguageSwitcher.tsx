@@ -15,7 +15,7 @@ export default function LanguageSwitcher() {
 
   const languages = [
     { code: "en", name: "English" },
-    { code: "zh", name: "中文" },
+    { code: "zh", name: "简体中文" },
   ];
 
   const currentLanguage = languages.find((lang) => lang.code === i18n.language) || languages[0];
