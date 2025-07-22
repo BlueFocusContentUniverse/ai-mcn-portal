@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import type React from "react";
 
 import { CookiesProviderWrapper } from "@/components/cookies-provider";
+import { ThemeProvider } from "@/components/theme-provider";
 import I18NProvider from "@/lib/i18n/client-provider";
 import { cookieName } from "@/lib/i18n/settings";
 import { cn } from "@/lib/utils";
@@ -46,10 +47,12 @@ export default async function RootLayout({
   const lng = cookieStore.get(cookieName)?.value;
 
   return (
-    <html lang={lng ?? "en"} dir={dir(lng ?? "en")} className="dark">
+    <html lang={lng ?? "en"} dir={dir(lng ?? "en")} className="light">
       <body className={cn("min-h-screen bg-background antialiased")}>
         <I18NProvider locale={lng ?? "en"}>
-          <CookiesProviderWrapper>{children}</CookiesProviderWrapper>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <CookiesProviderWrapper>{children}</CookiesProviderWrapper>
+          </ThemeProvider>
         </I18NProvider>
       </body>
     </html>

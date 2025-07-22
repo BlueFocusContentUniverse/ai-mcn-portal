@@ -150,32 +150,32 @@ export default function CaseDetailPage({ params }: CaseDetailPageProps) {
                   <span className="px-4 py-2 bg-brand-red/20 text-brand-red rounded-full text-sm font-semibold">
                     {caseStudy.category}
                   </span>
-                  <span className="text-gray-400">•</span>
-                  <span className="text-gray-400">{caseStudy.timeline}</span>
-                  <span className="text-gray-400">•</span>
-                  <span className="text-gray-400">{caseStudy.team}</span>
+                  <span className="text-gray-500 dark:text-gray-400">•</span>
+                  <span className="text-gray-500 dark:text-gray-400">{caseStudy.timeline}</span>
+                  <span className="text-gray-500 dark:text-gray-400">•</span>
+                  <span className="text-gray-500 dark:text-gray-400">{caseStudy.team}</span>
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-bold mb-6">{caseStudy.title}</h1>
 
-                <p className="text-xl text-gray-300 mb-8 leading-relaxed">{caseStudy.fullDescription}</p>
+                <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">{caseStudy.fullDescription}</p>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-white">{caseStudy.results.engagement}</div>
-                    <div className="text-sm text-gray-400">Engagement</div>
+                    <div className="text-2xl font-bold text-gray-900 dark:text-white">{caseStudy.results.engagement}</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">Engagement</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-white">{caseStudy.results.reach}</div>
-                    <div className="text-sm text-gray-400">Reach</div>
+                    <div className="text-2xl font-bold text-gray-900 dark:text-white">{caseStudy.results.reach}</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">Reach</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-white">{caseStudy.results.conversion}</div>
-                    <div className="text-sm text-gray-400">Conversion</div>
+                    <div className="text-2xl font-bold text-gray-900 dark:text-white">{caseStudy.results.conversion}</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">Conversion</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-white">{caseStudy.results.costReduction}</div>
-                    <div className="text-sm text-gray-400">Cost Reduction</div>
+                    <div className="text-2xl font-bold text-gray-900 dark:text-white">{caseStudy.results.costReduction}</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">Cost Reduction</div>
                   </div>
                 </div>
               </div>
@@ -208,35 +208,35 @@ export default function CaseDetailPage({ params }: CaseDetailPageProps) {
           >
             {/* Challenge */}
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">The Challenge</h3>
-              <p className="text-gray-300 leading-relaxed">{caseStudy.challenge}</p>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">The Challenge</h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{caseStudy.challenge}</p>
             </div>
 
             {/* Solution */}
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Our Solution</h3>
-              <p className="text-gray-300 leading-relaxed">{caseStudy.solution}</p>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Our Solution</h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{caseStudy.solution}</p>
             </div>
 
             {/* Results */}
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">The Results</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">The Results</h3>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-brand-red rounded-full"></div>
-                  <span className="text-gray-300">Content volume increased by {caseStudy.results.contentVolume}</span>
+                  <span className="text-gray-600 dark:text-gray-300">Content volume increased by {caseStudy.results.contentVolume}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-brand-red rounded-full"></div>
-                  <span className="text-gray-300">Engagement rates improved by {caseStudy.results.engagement}</span>
+                  <span className="text-gray-600 dark:text-gray-300">Engagement rates improved by {caseStudy.results.engagement}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-brand-red rounded-full"></div>
-                  <span className="text-gray-300">Conversion rates increased by {caseStudy.results.conversion}</span>
+                  <span className="text-gray-600 dark:text-gray-300">Conversion rates increased by {caseStudy.results.conversion}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-brand-red rounded-full"></div>
-                  <span className="text-gray-300">Marketing costs reduced by {caseStudy.results.costReduction}</span>
+                  <span className="text-gray-600 dark:text-gray-300">Marketing costs reduced by {caseStudy.results.costReduction}</span>
                 </div>
               </div>
             </div>
@@ -244,25 +244,25 @@ export default function CaseDetailPage({ params }: CaseDetailPageProps) {
 
           {/* CTA */}
           <motion.div
-            className="text-center mt-16 p-8 bg-gray-800/50 rounded-2xl border border-white/10"
+            className="text-center mt-16 p-8 bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-white/10"
             initial={{ opacity: 0, y: 20 }}
             animate={contentIsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h3 className="text-2xl font-bold text-white mb-4">Ready to Achieve Similar Results?</h3>
-            <p className="text-gray-300 mb-6">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Ready to Achieve Similar Results?</h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
               Let&apos;s discuss how we can help your business scale with AI-powered content creation
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 href="/contact"
-                className="bg-gradient-to-r from-brand-red to-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                className="bg-gradient-to-r from-brand-red to-red-600 text-gray-900 dark:text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-opacity"
               >
                 Start Your Project
               </Link>
               <Link
                 href="/cases"
-                className="border border-white/20 text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors"
+                className="border border-white/20 text-gray-900 dark:text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors"
               >
                 View More Cases
               </Link>

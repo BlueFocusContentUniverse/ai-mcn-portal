@@ -102,13 +102,17 @@ export default function CasesPage() {
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               Case <span className="text-brand-red">Studies</span>
             </h1>
-            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
               探索我们如何利用AI为各行各业带来创新营销解决方案，助力品牌实现增长目标
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <span className="px-4 py-2 bg-brand-red/20 text-brand-red rounded-full">All Industries</span>
-              <span className="px-4 py-2 bg-white/10 text-gray-300 rounded-full">500+ Success Stories</span>
-              <span className="px-4 py-2 bg-white/10 text-gray-300 rounded-full">98% Client Satisfaction</span>
+              <span className="px-4 py-2 bg-white/10 text-gray-600 dark:text-gray-300 rounded-full">
+                500+ Success Stories
+              </span>
+              <span className="px-4 py-2 bg-white/10 text-gray-600 dark:text-gray-300 rounded-full">
+                98% Client Satisfaction
+              </span>
             </div>
           </motion.div>
         </div>
@@ -126,7 +130,7 @@ export default function CasesPage() {
             {caseStudies.map((caseStudy, index) => (
               <motion.div
                 key={caseStudy.id}
-                className="group relative bg-gray-800/50 rounded-2xl border border-white/10 overflow-hidden hover:border-brand-red/50 transition-all duration-300"
+                className="group relative bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-white/10 overflow-hidden hover:border-brand-red/50 transition-all duration-300"
                 initial={{ opacity: 0, y: 30 }}
                 animate={casesIsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
@@ -149,28 +153,34 @@ export default function CasesPage() {
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-sm text-brand-red font-semibold">{caseStudy.category}</span>
-                      <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-brand-red transition-colors" />
+                      <ArrowRight className="w-5 h-5 text-gray-500 dark:text-gray-400 group-hover:text-brand-red transition-colors" />
                     </div>
 
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-red transition-colors">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-brand-red transition-colors">
                       {caseStudy.title}
                     </h3>
 
-                    <p className="text-gray-400 text-sm mb-4 line-clamp-3">{caseStudy.description}</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-3">
+                      {caseStudy.description}
+                    </p>
 
                     {/* Metrics */}
-                    <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/10">
+                    <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200 dark:border-white/10">
                       <div className="text-center">
-                        <div className="text-lg font-bold text-white">{caseStudy.metrics.engagement}</div>
-                        <div className="text-xs text-gray-400">Engagement</div>
+                        <div className="text-lg font-bold text-gray-900 dark:text-white">
+                          {caseStudy.metrics.engagement}
+                        </div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400">Engagement</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-bold text-white">{caseStudy.metrics.reach}</div>
-                        <div className="text-xs text-gray-400">Reach</div>
+                        <div className="text-lg font-bold text-gray-900 dark:text-white">{caseStudy.metrics.reach}</div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400">Reach</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-bold text-white">{caseStudy.metrics.conversion}</div>
-                        <div className="text-xs text-gray-400">Conversion</div>
+                        <div className="text-lg font-bold text-gray-900 dark:text-white">
+                          {caseStudy.metrics.conversion}
+                        </div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400">Conversion</div>
                       </div>
                     </div>
                   </div>
@@ -186,7 +196,7 @@ export default function CasesPage() {
             animate={casesIsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <button className="bg-gradient-to-r from-brand-red to-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-opacity">
+            <button className="bg-gradient-to-r from-brand-red to-red-600 text-gray-900 dark:text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-opacity">
               Load More Cases
             </button>
           </motion.div>
@@ -197,20 +207,22 @@ export default function CasesPage() {
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-gray-900 via-purple-900/10 to-blue-900/10">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Join Our Success Stories?</h2>
-            <p className="text-xl text-gray-300 mb-10">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Ready to Join Our Success Stories?
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-10">
               Let&apos;s create your own success story with our AI-powered content platform
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 href="/contact"
-                className="bg-gradient-to-r from-brand-red to-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                className="bg-gradient-to-r from-brand-red to-red-600 text-gray-900 dark:text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-opacity"
               >
                 Start Your Journey
               </Link>
               <Link
                 href="/about"
-                className="border border-white/20 text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors"
+                className="border border-white/20 text-gray-900 dark:text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors"
               >
                 Learn More
               </Link>

@@ -120,17 +120,13 @@ export function ClientLogoCarousel({ className = "" }: ClientLogoCarouselProps) 
           <h2 className="section-title">
             <span className="section-gradient-text">Trusted by Industry Leaders</span>
           </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
             Join hundreds of successful brands and creators who trust Tomato Planet for their content needs
           </p>
         </motion.div>
 
         {/* Logo Carousel */}
-        <div className="relative overflow-hidden">
-          {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-900 to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-900 to-transparent z-10" />
-
+        <div className="relative">
           {/* Scrolling Logos */}
           <motion.div
             className="flex space-x-8 items-center"
@@ -151,7 +147,7 @@ export function ClientLogoCarousel({ className = "" }: ClientLogoCarouselProps) 
                 whileHover={{ scale: 1.1, filter: "brightness(1.2)" }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="w-32 h-16 bg-white/5 rounded-lg p-3 flex items-center justify-center border border-white/10 backdrop-blur-sm">
+                <div className="w-32 h-16 bg-white/5 rounded-lg p-3 flex items-center justify-center border border-gray-200 dark:border-white/10 backdrop-blur-sm">
                   <Image
                     src={logo}
                     alt={`Client logo ${index + 1}`}
@@ -171,7 +167,7 @@ export function ClientLogoCarousel({ className = "" }: ClientLogoCarouselProps) 
                 whileHover={{ scale: 1.1, filter: "brightness(1.2)" }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="w-32 h-16 bg-white/5 rounded-lg p-3 flex items-center justify-center border border-white/10 backdrop-blur-sm">
+                <div className="w-32 h-16 bg-white/5 rounded-lg p-3 flex items-center justify-center border border-gray-200 dark:border-white/10 backdrop-blur-sm">
                   <Image
                     src={logo}
                     alt={`Client logo ${index + 1}`}
@@ -193,16 +189,16 @@ export function ClientLogoCarousel({ className = "" }: ClientLogoCarouselProps) 
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <div className="text-center">
-            <div className="text-4xl font-bold text-white mb-2">500+</div>
-            <div className="text-gray-400">Active Clients</div>
+            <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">500+</div>
+            <div className="text-gray-500 dark:text-gray-400">Active Clients</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-white mb-2">10M+</div>
-            <div className="text-gray-400">Content Pieces Created</div>
+            <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">10M+</div>
+            <div className="text-gray-500 dark:text-gray-400">Content Pieces Created</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-white mb-2">98%</div>
-            <div className="text-gray-400">Client Satisfaction</div>
+            <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">98%</div>
+            <div className="text-gray-500 dark:text-gray-400">Client Satisfaction</div>
           </div>
         </motion.div>
       </div>

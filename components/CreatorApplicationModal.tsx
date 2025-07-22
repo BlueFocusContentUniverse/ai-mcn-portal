@@ -78,10 +78,10 @@ export function CreatorApplicationModal({ open, onOpenChange }: CreatorApplicati
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[500px] bg-brand-black border-white/10 text-white">
+      <DialogContent className="sm:max-w-[500px] bg-background border-gray-200 dark:border-white/10 text-gray-900 dark:text-white">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-white">Apply as a Creator</DialogTitle>
-          <DialogDescription className="text-gray-300">
+          <DialogTitle className="text-2xl font-bold text-gray-900 dark:text-white">Apply as a Creator</DialogTitle>
+          <DialogDescription className="text-gray-600 dark:text-gray-300">
             Join our network and start monetizing your content. Fill out the form below to get started.
           </DialogDescription>
         </DialogHeader>
@@ -100,7 +100,7 @@ export function CreatorApplicationModal({ open, onOpenChange }: CreatorApplicati
                     {...form.register("contactType")}
                     className="text-brand-red"
                   />
-                  <Label htmlFor="email-contact" className="flex items-center space-x-2 text-white">
+                  <Label htmlFor="email-contact" className="flex items-center space-x-2 text-gray-900 dark:text-white">
                     <Mail className="w-4 h-4" />
                     <span>Email</span>
                   </Label>
@@ -113,7 +113,7 @@ export function CreatorApplicationModal({ open, onOpenChange }: CreatorApplicati
                     {...form.register("contactType")}
                     className="text-brand-red"
                   />
-                  <Label htmlFor="phone-contact" className="flex items-center space-x-2 text-white">
+                  <Label htmlFor="phone-contact" className="flex items-center space-x-2 text-gray-900 dark:text-white">
                     <Phone className="w-4 h-4" />
                     <span>Phone</span>
                   </Label>
@@ -132,7 +132,7 @@ export function CreatorApplicationModal({ open, onOpenChange }: CreatorApplicati
                           {...field}
                           type="email"
                           placeholder="your.email@example.com"
-                          className="bg-white/5 border-white/20 text-white placeholder:text-gray-400"
+                          className="bg-white/5 border-white/20 text-gray-900 dark:text-white placeholder:text-gray-400"
                         />
                       </FormControl>
                       <FormMessage />
@@ -151,11 +151,11 @@ export function CreatorApplicationModal({ open, onOpenChange }: CreatorApplicati
                         <FormLabel className="text-white">Country Code</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
-                            <SelectTrigger className="bg-white/5 border-white/20 text-white">
+                            <SelectTrigger className="bg-white/5 border-white/20 text-gray-900 dark:text-white">
                               <SelectValue placeholder="+1" />
                             </SelectTrigger>
                           </FormControl>
-                          <SelectContent className="bg-brand-black border-white/10">
+                          <SelectContent className="bg-background border-gray-200 dark:border-white/10">
                             {countryCodes.map((country) => (
                               <SelectItem key={country.code} value={country.code}>
                                 {country.code} ({country.country})
@@ -179,7 +179,7 @@ export function CreatorApplicationModal({ open, onOpenChange }: CreatorApplicati
                               {...field}
                               type="tel"
                               placeholder="(555) 123-4567"
-                              className="bg-white/5 border-white/20 text-white placeholder:text-gray-400"
+                              className="bg-white/5 border-white/20 text-gray-900 dark:text-white placeholder:text-gray-400"
                             />
                           </FormControl>
                           <FormMessage />
@@ -200,11 +200,11 @@ export function CreatorApplicationModal({ open, onOpenChange }: CreatorApplicati
                   <FormLabel className="text-white">Primary Platform</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="bg-white/5 border-white/20 text-white">
+                      <SelectTrigger className="bg-white/5 border-white/20 text-gray-900 dark:text-white">
                         <SelectValue placeholder="Select platform" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent className="bg-brand-black border-white/10">
+                    <SelectContent className="bg-background border-gray-200 dark:border-white/10">
                       <SelectItem value="tiktok">TikTok</SelectItem>
                       <SelectItem value="instagram">Instagram</SelectItem>
                       <SelectItem value="youtube">YouTube</SelectItem>
@@ -238,10 +238,10 @@ export function CreatorApplicationModal({ open, onOpenChange }: CreatorApplicati
                                 ? "@username"
                                 : "Your platform username"
                       }
-                      className="bg-white/5 border-white/20 text-white placeholder:text-gray-400"
+                      className="bg-white/5 border-white/20 text-gray-900 dark:text-white placeholder:text-gray-400"
                     />
                   </FormControl>
-                  <FormDescription className="text-gray-400">Enter your {platform} username or ID</FormDescription>
+                  <FormDescription className="text-gray-500 dark:text-gray-400">Enter your {platform} username or ID</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -258,7 +258,7 @@ export function CreatorApplicationModal({ open, onOpenChange }: CreatorApplicati
                       <Input
                         {...field}
                         placeholder="e.g., Twitch, LinkedIn, etc."
-                        className="bg-white/5 border-white/20 text-white placeholder:text-gray-400"
+                        className="bg-white/5 border-white/20 text-gray-900 dark:text-white placeholder:text-gray-400"
                       />
                     </FormControl>
                     <FormMessage />
@@ -272,11 +272,11 @@ export function CreatorApplicationModal({ open, onOpenChange }: CreatorApplicati
                 type="button"
                 variant="outline"
                 onClick={() => onOpenChange(false)}
-                className="border-white/20 text-white hover:bg-white/10"
+                className="border-white/20 text-gray-900 dark:text-white hover:bg-white/10"
               >
                 Cancel
               </Button>
-              <Button type="submit" disabled={isSubmitting} className="bg-brand-red hover:bg-red-600 text-white">
+              <Button type="submit" disabled={isSubmitting} className="bg-brand-red hover:bg-red-600 text-gray-900 dark:text-white">
                 {isSubmitting ? "Submitting..." : "Submit Application"}
               </Button>
             </div>

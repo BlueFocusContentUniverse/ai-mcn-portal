@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 interface PublicLayoutProps {
   children: React.ReactNode;
@@ -30,34 +31,44 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-brand-black text-brand-white">
+    <div className="min-h-screen bg-background text-brand-white">
       {/* Navigation */}
       <motion.nav
-        className="fixed top-0 left-0 right-0 z-50 bg-brand-black/30 backdrop-blur-lg border-b border-white/10"
+        className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-background/30 backdrop-blur-lg border-b border-gray-200 dark:border-white/10"
         initial={{ y: 0 }}
-        animate={{ y: isScrolled ? -100 : 0 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-3">
-              <Image src="/logo.png" alt="AI MCN Logo" width={40} height={40} className="animate-pulse" />
-              <span className="text-2xl font-bold bg-gradient-to-r from-brand-red to-red-400 bg-clip-text text-transparent">
-                Tomato Planet
-              </span>
+              {/* Logo with dark mode reversal */}
+              <div className="logo-container">
+                {/* Light mode logo */}
+                <Image src="/logo.png" alt="AI MCN Logo" width={64} height={64} className="logo-light animate-pulse" />
+                {/* Dark mode logo */}
+                <Image
+                  src="/logo-white.png"
+                  alt="AI MCN Logo"
+                  width={64}
+                  height={64}
+                  className="logo-dark animate-pulse"
+                />
+              </div>
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">Tomato Planet</span>
               <div className="flex items-center space-x-8 ml-8">
-                <Link href="/" className="nav-link">
+                <Link href="/" className="nav-link text-lg">
                   {t("nav.home", { ns: "navigation" })}
                 </Link>
-                <Link href="/cases" className="nav-link">
+                <Link href="/cases" className="nav-link text-lg">
                   {t("nav.cases", { ns: "navigation" })}
                 </Link>
-                <Link href="/about" className="nav-link">
+                <Link href="/about" className="nav-link text-lg">
                   {t("nav.about", { ns: "navigation" })}
                 </Link>
               </div>
             </div>
             <div className="hidden md:flex items-center space-x-8">
+              <ThemeToggle />
               <LanguageSwitcher />
             </div>
           </div>
@@ -67,13 +78,22 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
       <main>{children}</main>
 
       {/* Footer */}
-      <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-white/10">
+      <footer className="py-6 px-4 sm:px-6 lg:px-8 border-t border-gray-200 dark:border-white/10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center space-x-3">
-            <Image src="/logo.png" alt="AI MCN Logo" width={32} height={32} />
-            <span className="text-xl font-bold text-white">Tomato Planet</span>
+            {/* Footer logo with dark mode reversal */}
+            <div className="logo-container">
+              {/* Light mode logo */}
+              <Image src="/logo.png" alt="AI MCN Logo" width={48} height={48} className="logo-light" />
+              {/* Dark mode logo */}
+              <Image src="/logo-white.png" alt="AI MCN Logo" width={48} height={48} className="logo-dark" />
+            </div>
+            <span className="text-xl font-bold text-gray-900 dark:text-white">Tomato Planet</span>
           </div>
           <div className="flex space-x-8">
+            <Link href="https://beian.miit.gov.cn/" className="nav-link">
+              京ICP备2025108131号-1
+            </Link>
             <Link href="/about" className="nav-link">
               {t("nav.about", { ns: "navigation" })}
             </Link>

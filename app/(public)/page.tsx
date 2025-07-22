@@ -1,6 +1,6 @@
 "use client";
 
-import { Briefcase, Mouse, Play, Shield, UserPlus } from "lucide-react";
+import { Briefcase, Mouse, Play, UserPlus } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -70,7 +70,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-brand-black text-brand-white overflow-x-hidden">
+    <div className="min-h-screen bg-background text-brand-white overflow-x-hidden">
       <main className="pt-20">
         {/* Hero Section */}
         <section
@@ -102,7 +102,7 @@ export default function HomePage() {
               </motion.div>
             </h1>
             <motion.p
-              className="text-xl text-gray-300 mb-12 max-w-4xl mx-auto"
+              className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.0 }}
@@ -126,8 +126,8 @@ export default function HomePage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.5 }}
           >
-            <span className="text-sm text-gray-400">{t("hero.scroll")}</span>
-            <Mouse className="w-6 h-6 text-gray-400 animate-bounce" />
+            <span className="text-sm text-gray-500 dark:text-gray-400">{t("hero.scroll")}</span>
+            <Mouse className="w-6 h-6 text-gray-500 dark:text-gray-400 animate-bounce" />
           </motion.div>
         </section>
 
@@ -178,9 +178,11 @@ export default function HomePage() {
                 style={{ animationDelay: caseStudy.delay }}
               >
                 <div className="p-8">
-                  <p className="text-lg font-semibold text-gray-300 mb-4">{caseStudy.title}</p>
-                  <p className="text-6xl font-bold text-white mb-2 case-study-metric">{caseStudy.metric}</p>
-                  <p className="text-gray-400">{caseStudy.desc}</p>
+                  <p className="text-lg font-semibold text-gray-600 dark:text-gray-300 mb-4">{caseStudy.title}</p>
+                  <p className="text-6xl font-bold text-gray-900 dark:text-white mb-2 case-study-metric">
+                    {caseStudy.metric}
+                  </p>
+                  <p className="text-gray-500 dark:text-gray-400">{caseStudy.desc}</p>
                 </div>
               </div>
             ))}
@@ -217,8 +219,8 @@ export default function HomePage() {
                 },
               ].map((review, index) => (
                 <div key={index} className="review-card">
-                  <p className="text-lg text-gray-300 mb-6">&ldquo;{review.quote}&rdquo;</p>
-                  <p className="font-semibold text-white">{review.author}</p>
+                  <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">&ldquo;{review.quote}&rdquo;</p>
+                  <p className="font-semibold text-gray-900 dark:text-white">{review.author}</p>
                 </div>
               ))}
               {/* Duplicate for seamless scroll */}
@@ -240,32 +242,10 @@ export default function HomePage() {
                 },
               ].map((review, index) => (
                 <div key={`dup-${index}`} className="review-card">
-                  <p className="text-lg text-gray-300 mb-6">&ldquo;{review.quote}&rdquo;</p>
-                  <p className="font-semibold text-white">{review.author}</p>
+                  <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">&ldquo;{review.quote}&rdquo;</p>
+                  <p className="font-semibold text-gray-900 dark:text-white">{review.author}</p>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Security Section */}
-        <section
-          ref={securityRef}
-          className={`py-24 px-4 sm:px-6 lg:px-8 transition-opacity duration-1000 ${securityIsVisible ? "opacity-100" : "opacity-0"}`}
-        >
-          <div className="max-w-4xl mx-auto text-center">
-            <Shield className="w-16 h-16 text-white mx-auto mb-8" />
-            <h2 className="section-title mb-6">
-              <span className="section-gradient-text">Enterprise-Grade Security</span>
-            </h2>
-            <p className="section-subtitle mb-8">
-              Your data and brand assets are protected by comprehensive, industry-leading security protocols.
-            </p>
-            <div className="flex justify-center space-x-8 text-gray-400">
-              <span className="font-semibold">SOC 2 Type II</span>
-              <span className="font-semibold">GDPR</span>
-              <span className="font-semibold">ISO 27001</span>
-              <span className="font-semibold">CCPA</span>
             </div>
           </div>
         </section>
@@ -278,8 +258,10 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto">
             <div className="cta-card">
               <div className="p-12 text-center">
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Join the Content Revolution</h2>
-                <p className="text-xl text-gray-300 mb-10">
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                  Join the Content Revolution
+                </h2>
+                <p className="text-xl text-gray-600 dark:text-gray-300 mb-10">
                   Whether you&apos;re a creator looking to monetize or a brand ready to scale, your journey starts here.
                 </p>
                 <div className="flex flex-col md:flex-row justify-center gap-6">

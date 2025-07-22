@@ -103,10 +103,10 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px] bg-brand-black border-white/10 text-white">
+      <DialogContent className="sm:max-w-[600px] bg-background border-gray-200 dark:border-white/10 text-gray-900 dark:text-white">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-white">Partner as a Brand</DialogTitle>
-          <DialogDescription className="text-gray-300">
+          <DialogTitle className="text-2xl font-bold text-gray-900 dark:text-white">Partner as a Brand</DialogTitle>
+          <DialogDescription className="text-gray-600 dark:text-gray-300">
             Scale your brand with our creator network. Fill out the form below to start your partnership.
           </DialogDescription>
         </DialogHeader>
@@ -115,7 +115,7 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             {/* Brand Information */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-white flex items-center space-x-2">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
                 <Building2 className="w-5 h-5" />
                 <span>Brand Information</span>
               </h3>
@@ -130,7 +130,7 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
                       <Input
                         {...field}
                         placeholder="Your brand name"
-                        className="bg-white/5 border-white/20 text-white placeholder:text-gray-400"
+                        className="bg-white/5 border-white/20 text-gray-900 dark:text-white placeholder:text-gray-400"
                       />
                     </FormControl>
                     <FormMessage />
@@ -147,11 +147,11 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
                       <FormLabel className="text-white">Industry</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
-                          <SelectTrigger className="bg-white/5 border-white/20 text-white">
+                          <SelectTrigger className="bg-white/5 border-white/20 text-gray-900 dark:text-white">
                             <SelectValue placeholder="Select industry" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent className="bg-brand-black border-white/10">
+                        <SelectContent className="bg-background border-gray-200 dark:border-white/10">
                           <SelectItem value="fashion">Fashion</SelectItem>
                           <SelectItem value="beauty">Beauty</SelectItem>
                           <SelectItem value="technology">Technology</SelectItem>
@@ -180,11 +180,11 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
                       <FormLabel className="text-white">Company Size</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
-                          <SelectTrigger className="bg-white/5 border-white/20 text-white">
+                          <SelectTrigger className="bg-white/5 border-white/20 text-gray-900 dark:text-white">
                             <SelectValue placeholder="Select size" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent className="bg-brand-black border-white/10">
+                        <SelectContent className="bg-background border-gray-200 dark:border-white/10">
                           <SelectItem value="startup">Startup (1-10)</SelectItem>
                           <SelectItem value="small">Small (11-50)</SelectItem>
                           <SelectItem value="medium">Medium (51-200)</SelectItem>
@@ -209,7 +209,7 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
                         <Input
                           {...field}
                           placeholder="Please specify your industry"
-                          className="bg-white/5 border-white/20 text-white placeholder:text-gray-400"
+                          className="bg-white/5 border-white/20 text-gray-900 dark:text-white placeholder:text-gray-400"
                         />
                       </FormControl>
                       <FormMessage />
@@ -232,7 +232,7 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
                         {...field}
                         type="url"
                         placeholder="https://your-brand.com"
-                        className="bg-white/5 border-white/20 text-white placeholder:text-gray-400"
+                        className="bg-white/5 border-white/20 text-gray-900 dark:text-white placeholder:text-gray-400"
                       />
                     </FormControl>
                     <FormMessage />
@@ -250,10 +250,10 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
                       <Textarea
                         {...field}
                         placeholder="Tell us about your brand, products, and target audience..."
-                        className="bg-white/5 border-white/20 text-white placeholder:text-gray-400 min-h-[100px]"
+                        className="bg-white/5 border-white/20 text-gray-900 dark:text-white placeholder:text-gray-400 min-h-[100px]"
                       />
                     </FormControl>
-                    <FormDescription className="text-gray-400">
+                    <FormDescription className="text-gray-500 dark:text-gray-400">
                       Help us understand your brand better to match you with the right creators.
                     </FormDescription>
                     <FormMessage />
@@ -264,7 +264,7 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
 
             {/* Contact Information */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-white flex items-center space-x-2">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
                 <Users className="w-5 h-5" />
                 <span>Contact Information</span>
               </h3>
@@ -280,7 +280,7 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
                         <Input
                           {...field}
                           placeholder="John Doe"
-                          className="bg-white/5 border-white/20 text-white placeholder:text-gray-400"
+                          className="bg-white/5 border-white/20 text-gray-900 dark:text-white placeholder:text-gray-400"
                         />
                       </FormControl>
                       <FormMessage />
@@ -298,7 +298,7 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
                         <Input
                           {...field}
                           placeholder="Marketing Manager"
-                          className="bg-white/5 border-white/20 text-white placeholder:text-gray-400"
+                          className="bg-white/5 border-white/20 text-gray-900 dark:text-white placeholder:text-gray-400"
                         />
                       </FormControl>
                       <FormMessage />
@@ -318,7 +318,7 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
                       {...form.register("contactType")}
                       className="text-brand-red"
                     />
-                    <Label htmlFor="email-contact-brand" className="flex items-center space-x-2 text-white">
+                    <Label htmlFor="email-contact-brand" className="flex items-center space-x-2 text-gray-900 dark:text-white">
                       <Mail className="w-4 h-4" />
                       <span>Email</span>
                     </Label>
@@ -331,7 +331,7 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
                       {...form.register("contactType")}
                       className="text-brand-red"
                     />
-                    <Label htmlFor="phone-contact-brand" className="flex items-center space-x-2 text-white">
+                    <Label htmlFor="phone-contact-brand" className="flex items-center space-x-2 text-gray-900 dark:text-white">
                       <Phone className="w-4 h-4" />
                       <span>Phone</span>
                     </Label>
@@ -350,7 +350,7 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
                             {...field}
                             type="email"
                             placeholder="contact@your-brand.com"
-                            className="bg-white/5 border-white/20 text-white placeholder:text-gray-400"
+                            className="bg-white/5 border-white/20 text-gray-900 dark:text-white placeholder:text-gray-400"
                           />
                         </FormControl>
                         <FormMessage />
@@ -369,11 +369,11 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
                           <FormLabel className="text-white">Country Code</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="bg-white/5 border-white/20 text-white">
+                              <SelectTrigger className="bg-white/5 border-white/20 text-gray-900 dark:text-white">
                                 <SelectValue placeholder="+1" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-brand-black border-white/10">
+                            <SelectContent className="bg-background border-gray-200 dark:border-white/10">
                               {countryCodes.map((country) => (
                                 <SelectItem key={country.code} value={country.code}>
                                   {country.code} ({country.country})
@@ -397,7 +397,7 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
                                 {...field}
                                 type="tel"
                                 placeholder="(555) 123-4567"
-                                className="bg-white/5 border-white/20 text-white placeholder:text-gray-400"
+                                className="bg-white/5 border-white/20 text-gray-900 dark:text-white placeholder:text-gray-400"
                               />
                             </FormControl>
                             <FormMessage />
@@ -415,11 +415,11 @@ export function BrandApplicationModal({ open, onOpenChange }: BrandApplicationMo
                 type="button"
                 variant="outline"
                 onClick={() => onOpenChange(false)}
-                className="border-white/20 text-white hover:bg-white/10"
+                className="border-white/20 text-gray-900 dark:text-white hover:bg-white/10"
               >
                 Cancel
               </Button>
-              <Button type="submit" disabled={isSubmitting} className="bg-brand-red hover:bg-red-600 text-white">
+              <Button type="submit" disabled={isSubmitting} className="bg-brand-red hover:bg-red-600 text-gray-900 dark:text-white">
                 {isSubmitting ? "Submitting..." : "Submit Application"}
               </Button>
             </div>

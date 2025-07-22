@@ -40,20 +40,20 @@ export default function LanguageSwitcher() {
         variant="ghost"
         size="sm"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 text-white hover:text-brand-red"
+        className="flex items-center space-x-2 text-gray-900 dark:text-white hover:text-brand-red text-base"
       >
         <Globe className="w-4 h-4" />
         <span>{currentLanguage.name}</span>
       </Button>
 
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 bg-brand-black border border-white/10 rounded-lg shadow-lg z-50 min-w-[120px]">
+        <div className="absolute top-full right-0 mt-2 bg-background border border-gray-200 dark:border-white/10 rounded-lg shadow-lg z-50 min-w-[120px]">
           {languages.map((language) => (
             <button
               key={language.code}
               onClick={() => changeLanguage(language.code)}
-              className={`w-full px-4 py-2 text-left text-sm hover:bg-white/10 transition-colors ${
-                i18n.language === language.code ? "text-brand-red" : "text-white"
+              className={`w-full px-4 py-2 text-left text-base hover:bg-white/10 transition-colors ${
+                i18n.language === language.code ? "text-brand-red" : "text-gray-900 dark:text-white"
               }`}
             >
               {language.name}

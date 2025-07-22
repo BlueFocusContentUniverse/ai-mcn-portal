@@ -113,10 +113,10 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
           animate={introIsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             Our Core <span className="text-brand-red">Capabilities</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Discover how our AI-powered platform transforms content creation and distribution
           </p>
         </motion.div>
@@ -130,7 +130,7 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
               className={`flex items-center space-x-3 px-6 py-4 rounded-xl border transition-all duration-300 ${
                 activeTab === tab.id
                   ? "border-brand-red bg-brand-red/10 text-brand-red"
-                  : "border-gray-600 text-gray-400 hover:border-gray-500 hover:text-gray-300"
+                  : "border-gray-600 text-gray-500 dark:text-gray-400 hover:border-gray-500 hover:text-gray-300"
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -159,8 +159,8 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h3 className="text-3xl font-bold text-white mb-4">{tabs[activeTab].title}</h3>
-              <p className="text-lg text-gray-300 leading-relaxed">{tabs[activeTab].description}</p>
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">{tabs[activeTab].title}</h3>
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">{tabs[activeTab].description}</p>
             </motion.div>
 
             <motion.div
@@ -169,7 +169,7 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <h4 className="text-xl font-semibold text-white mb-4">Key Features</h4>
+              <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Key Features</h4>
               <div className="grid gap-3">
                 {tabs[activeTab].features.map((feature, index) => (
                   <motion.div
@@ -180,7 +180,7 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
                     transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
                   >
                     <div className="w-2 h-2 bg-brand-red rounded-full"></div>
-                    <span className="text-gray-300">{feature}</span>
+                    <span className="text-gray-600 dark:text-gray-300">{feature}</span>
                   </motion.div>
                 ))}
               </div>

@@ -154,14 +154,14 @@ export function CapabilitiesSection({ className = "", autoPlayInterval = 5000 }:
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors duration-200 rounded-full p-3 text-white"
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/10 dark:bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors duration-200 rounded-full p-3 text-gray-900 dark:text-white"
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors duration-200 rounded-full p-3 text-white"
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/10 dark:bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors duration-200 rounded-full p-3 text-gray-900 dark:text-white"
           aria-label="Next slide"
         >
           <ChevronRight className="w-6 h-6" />
@@ -174,7 +174,7 @@ export function CapabilitiesSection({ className = "", autoPlayInterval = 5000 }:
               key={index}
               onClick={() => handleSlideChange(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide ? "bg-brand-red scale-125" : "bg-white/30 hover:bg-white/50"
+                index === currentSlide ? "bg-brand-red scale-125" : "bg-black/30 dark:bg-white/30 hover:bg-white/50"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
