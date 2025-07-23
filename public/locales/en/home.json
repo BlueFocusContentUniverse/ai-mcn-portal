@@ -229,5 +229,22 @@
   "join": {
     "title": "Join the Content Revolution",
     "subtitle": "Whether you're a creator looking to monetize or a brand ready to scale, your journey starts here."
+  },
+  "reviews": {
+    "title": "From Our Partners",
+    "reviews": [
+      {
+        "quote": "Tomato Planet transformed our content strategy completely. We're now producing 5x more content with better quality and engagement.",
+        "author": "John Sun, CATL"
+      },
+      {
+        "quote": "The ROI tracking and analytics are incredible. We can see exactly how our content performs across all channels.",
+        "author": "Sarah Zhang, TECNO"
+      },
+      {
+        "quote": "The custom content generation is amazing. Every piece feels unique and perfectly aligned with our brand.",
+        "author": "Mike Li, HONOR"
+      }
+    ]
   }
 } 

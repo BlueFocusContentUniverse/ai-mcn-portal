@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 // A custom hook to detect if an element is in the viewport
 const useOnScreen = (options: IntersectionObserverInit) => {
@@ -41,24 +42,10 @@ interface ClientReviewsSectionProps {
 }
 
 export function ClientReviewsSection({ className = "" }: ClientReviewsSectionProps) {
+  const { t } = useTranslation(["home"]);
   const [reviewsRef, reviewsIsVisible] = useOnScreen({ threshold: 0.1 });
 
-  const reviews: Review[] = [
-    {
-      quote:
-        "Tomato Planet transformed our content strategy completely. We're now producing 5x more content with better quality and engagement.",
-      author: "John Sun, CATL",
-    },
-    {
-      quote:
-        "The ROI tracking and analytics are incredible. We can see exactly how our content performs across all channels.",
-      author: "Sarah Zhang, TECNO",
-    },
-    {
-      quote: "The custom content generation is amazing. Every piece feels unique and perfectly aligned with our brand.",
-      author: "Mike Li, HONOR",
-    },
-  ];
+  const reviews: Review[] = t("reviews.reviews", { returnObjects: true }) as Review[];
 
   return (
     <section
@@ -67,7 +54,7 @@ export function ClientReviewsSection({ className = "" }: ClientReviewsSectionPro
     >
       <div className="max-w-7xl mx-auto text-center mb-16">
         <h2 className="section-title">
-          <span className="section-gradient-text">From Our Partners</span>
+          <span className="section-gradient-text">{t("reviews.title")}</span>
         </h2>
       </div>
       <div className="scrolling-reviews">

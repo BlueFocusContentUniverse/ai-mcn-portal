@@ -188,7 +188,9 @@ export function ContactForm({
                   }`}
                 >
                   <div className="text-center">
-                    <div className="font-semibold">{t("contact.serviceType.brand.title")}</div>
+                    <div className="font-semibold text-gray-600 dark:text-gray-400">
+                      {t("contact.serviceType.brand.title")}
+                    </div>
                     <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                       {t("contact.serviceType.brand.subtitle")}
                     </div>
@@ -212,7 +214,9 @@ export function ContactForm({
                   }`}
                 >
                   <div className="text-center">
-                    <div className="font-semibold">{t("contact.serviceType.creator.title")}</div>
+                    <div className="font-semibold text-gray-600 dark:text-gray-400">
+                      {t("contact.serviceType.creator.title")}
+                    </div>
                     <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                       {t("contact.serviceType.creator.subtitle")}
                     </div>
