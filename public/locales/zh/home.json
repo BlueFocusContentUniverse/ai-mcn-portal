@@ -1,9 +1,16 @@
 {
   "hero": {
-    "title": "你的AI出海内容增长引擎",
-    "subtitle": "一站式数据驱动的海外社媒内容规模化运营服务",
+    "title": "你的出海内容增长AI引擎",
+    "title-a": "不仅是工具，更是完整的解决方案",
+    "title-b": "出海营销的唯一答案",
+    "title-c": "可衡量的全球影响力",
+    "subtitle": "AI 赋能，让每个品牌与创作者的声音，跨越山海，响彻全球每个角落",
     "cta": "探索未来",
     "scroll": "滚动"
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "让我们帮助您实现内容目标"
   },
   "features": {
     "batchProduction": {
@@ -53,5 +60,12 @@
         "性能分析"
       ]
     }
+  },
+  "client": {
+    "title": "行业领导者信赖",
+    "desc": "这些知名品牌正在使用我们的AI内容营销解决方案",
+    "activeClients": "活跃客户",
+    "contentPiecesCreated": "内容片段创建",
+    "clientSatisfaction": "客户满意度"
   }
 } 

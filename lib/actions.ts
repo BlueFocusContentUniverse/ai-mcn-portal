@@ -5,6 +5,46 @@ import { z } from "zod";
 
 import { prisma } from "@/prisma";
 
+// Unified validation schema for contact form
+const contactFormSchema = z.object({
+  serviceType: z.enum(["brand", "creator"]),
+  // Common fields
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Valid email is required"),
+  company: z.string().optional(),
+  phone: z.string().optional(),
+  phoneCountryCode: z.string().optional(),
+  message: z.string().min(10, "Please provide a detailed message"),
+  // Brand-specific fields
+  brandName: z.string().optional(),
+  industry: z
+    .enum([
+      "fashion",
+      "beauty",
+      "technology",
+      "food",
+      "fitness",
+      "education",
+      "entertainment",
+      "finance",
+      "healthcare",
+      "automotive",
+      "travel",
+      "sports",
+      "other",
+    ])
+    .optional(),
+  otherIndustry: z.string().optional(),
+  companySize: z.enum(["startup", "small", "medium", "large", "enterprise"]).optional(),
+  website: z.string().url().optional().or(z.literal("")),
+  contactTitle: z.string().optional(),
+  // Creator-specific fields
+  platform: z.enum(["tiktok", "instagram", "youtube", "twitter", "other"]).optional(),
+  otherPlatform: z.string().optional(),
+  socialMediaId: z.string().optional(),
+  contactType: z.enum(["email", "phone"]).optional(),
+});
+
 // Validation schemas for server actions
 const creatorApplicationSchema = z.object({
   contactType: z.enum(["email", "phone"]),
@@ -127,6 +167,93 @@ function mapCompanySizeToEnum(companySize: string): "STARTUP" | "SMALL" | "MEDIU
       return "ENTERPRISE";
     default:
       return "MEDIUM";
+  }
+}
+
+export async function submitContactForm(formData: FormData) {
+  const validatedFields = contactFormSchema.safeParse({
+    serviceType: formData.get("serviceType"),
+    name: formData.get("name"),
+    email: formData.get("email"),
+    company: formData.get("company"),
+    phone: formData.get("phone"),
+    phoneCountryCode: formData.get("phoneCountryCode"),
+    message: formData.get("message"),
+    brandName: formData.get("brandName"),
+    industry: formData.get("industry"),
+    otherIndustry: formData.get("otherIndustry"),
+    companySize: formData.get("companySize"),
+    website: formData.get("website"),
+    contactTitle: formData.get("contactTitle"),
+    platform: formData.get("platform"),
+    otherPlatform: formData.get("otherPlatform"),
+    socialMediaId: formData.get("socialMediaId"),
+    contactType: formData.get("contactType"),
+  });
+
+  if (!validatedFields.success) {
+    return { error: "Invalid fields." };
+  }
+
+  const {
+    serviceType,
+    name,
+    email,
+    company,
+    phone,
+    phoneCountryCode,
+    message,
+    brandName,
+    industry,
+    otherIndustry,
+    companySize,
+    website,
+    contactTitle,
+    platform,
+    otherPlatform,
+    socialMediaId,
+    contactType,
+  } = validatedFields.data;
+
+  try {
+    if (serviceType === "brand") {
+      // Submit brand application
+      await prisma.brandApplication.create({
+        data: {
+          brandName: brandName || name,
+          industry: mapIndustryToEnum(industry || "technology"),
+          otherIndustry: otherIndustry || null,
+          companySize: mapCompanySizeToEnum(companySize || "medium"),
+          website: website || null,
+          description: message,
+          contactType: "EMAIL", // Default to email for unified form
+          email: email || null,
+          phoneCountryCode: phoneCountryCode || null,
+          phoneNumber: phone || null,
+          contactName: name,
+          contactTitle: contactTitle || "",
+        },
+      });
+    } else {
+      // Submit creator application
+      await prisma.creatorApplication.create({
+        data: {
+          contactType: "EMAIL", // Default to email for unified form
+          email: email || "",
+          phoneCountryCode: phoneCountryCode || "",
+          phoneNumber: phone || "",
+          platform: mapPlatformToEnum(platform || "tiktok"),
+          otherPlatform: otherPlatform || "",
+          socialMediaId: socialMediaId || "",
+        },
+      });
+    }
+
+    revalidatePath("/");
+    return { success: `${serviceType === "brand" ? "Brand" : "Creator"} application submitted successfully!` };
+  } catch (error) {
+    console.error("Error submitting application:", error);
+    return { error: "Failed to submit application. Please try again." };
   }
 }
 

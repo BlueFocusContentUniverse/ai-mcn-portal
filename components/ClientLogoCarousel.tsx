@@ -3,6 +3,9 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+
+import { AnimatedNumber } from "@/components/AnimatedNumber";
 
 const clientLogos = [
   "/client_logo/第9页-1.PNG",
@@ -84,6 +87,7 @@ interface ClientLogoCarouselProps {
 
 export function ClientLogoCarousel({ className = "" }: ClientLogoCarouselProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -118,10 +122,10 @@ export function ClientLogoCarousel({ className = "" }: ClientLogoCarouselProps) 
           transition={{ duration: 0.8 }}
         >
           <h2 className="section-title">
-            <span className="section-gradient-text">Trusted by Industry Leaders</span>
+            <span className="section-gradient-text">{t("client.title", { ns: "home" })}</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
-            Join hundreds of successful brands and creators who trust Tomato Planet for their content needs
+            {t("client.desc", { ns: "home" })}
           </p>
         </motion.div>
 
@@ -144,7 +148,7 @@ export function ClientLogoCarousel({ className = "" }: ClientLogoCarouselProps) 
               <motion.div
                 key={`first-${index}`}
                 className="flex-shrink-0"
-                whileHover={{ scale: 1.1, filter: "brightness(1.2)" }}
+                whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.3 }}
               >
                 <div className="w-32 h-16 bg-white/5 rounded-lg p-3 flex items-center justify-center border border-gray-200 dark:border-white/10 backdrop-blur-sm">
@@ -189,16 +193,22 @@ export function ClientLogoCarousel({ className = "" }: ClientLogoCarouselProps) 
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <div className="text-center">
-            <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">500+</div>
-            <div className="text-gray-500 dark:text-gray-400">Active Clients</div>
+            <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+              <AnimatedNumber value={500} duration={2} />+
+            </div>
+            <div className="text-gray-500 dark:text-gray-400">{t("client.activeClients", { ns: "home" })}</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">10M+</div>
-            <div className="text-gray-500 dark:text-gray-400">Content Pieces Created</div>
+            <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+              <AnimatedNumber value={1000000} duration={2} />+
+            </div>
+            <div className="text-gray-500 dark:text-gray-400">{t("client.contentPiecesCreated", { ns: "home" })}</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">98%</div>
-            <div className="text-gray-500 dark:text-gray-400">Client Satisfaction</div>
+            <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+              <AnimatedNumber value={98} duration={2} />%
+            </div>
+            <div className="text-gray-500 dark:text-gray-400">{t("client.clientSatisfaction", { ns: "home" })}</div>
           </div>
         </motion.div>
       </div>

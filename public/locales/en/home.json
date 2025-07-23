@@ -1,9 +1,16 @@
 {
   "hero": {
-    "title": "AI-Powered Content Empire",
-    "subtitle": "From batch content production to global distribution - we revolutionize how brands create, manage, and distribute content at scale.",
+    "title": "Your AI Content Growth Engine",
+    "title-a": "Not just a tool, but a complete solution",
+    "title-b": "The only answer for your content growth",
+    "title-c": "Measurable global impact",
+    "subtitle": "AI empowers every brand and creator to reach the world, voice unbound",
     "cta": "Discover the Future",
     "scroll": "Scroll"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're here to help you achieve your content goals"
   },
   "features": {
     "batchProduction": {
@@ -53,5 +60,12 @@
         "Performance Analytics"
       ]
     }
+  },
+  "client": {
+    "title": "Trusted by Industry Leaders",
+    "desc": "These renowned brands are using our AI content marketing solutions",
+    "activeClients": "Active Clients",
+    "contentPiecesCreated": "Content Pieces Created",
+    "clientSatisfaction": "Client Satisfaction"
   }
 } 

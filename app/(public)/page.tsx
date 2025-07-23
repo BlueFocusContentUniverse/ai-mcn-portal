@@ -1,15 +1,17 @@
 "use client";
 
-import { Briefcase, Mouse, Play, UserPlus } from "lucide-react";
+import { Briefcase, Mouse, UserPlus } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { BrandApplicationModal } from "@/components/BrandApplicationModal";
+import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { CapabilitiesSection } from "@/components/CapabilitiesSection";
 import { ClientLogoCarousel } from "@/components/ClientLogoCarousel";
-import { CreatorApplicationModal } from "@/components/CreatorApplicationModal";
+import { useContactForm } from "@/components/ContactFormProvider";
 import { IntroSection } from "@/components/IntroSection";
+import { Typewriter } from "@/components/Typewriter";
+import { ContactFormTrigger } from "@/components/ContactFormTrigger";
 import { Button } from "@/components/ui/button";
 
 // A custom hook to detect if an element is in the viewport
@@ -46,37 +48,16 @@ export default function HomePage() {
   const [heroRef, heroIsVisible] = useOnScreen({ threshold: 0.1 });
   const [casesRef, casesIsVisible] = useOnScreen({ threshold: 0.1 });
   const [reviewsRef, reviewsIsVisible] = useOnScreen({ threshold: 0.1 });
-  const [securityRef, securityIsVisible] = useOnScreen({ threshold: 0.1 });
   const [joinRef, joinIsVisible] = useOnScreen({ threshold: 0.1 });
 
-  // Modal states
-  const [creatorModalOpen, setCreatorModalOpen] = useState(false);
-  const [brandModalOpen, setBrandModalOpen] = useState(false);
-
-  // Scroll state for nav bar
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  // Handle scroll for nav bar
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setIsScrolled(currentScrollY > 50);
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // Global form hook
+  const { openForm } = useContactForm();
 
   return (
     <div className="min-h-screen bg-background text-brand-white overflow-x-hidden">
-      <main className="pt-20">
+      <main>
         {/* Hero Section */}
-        <section
-          ref={heroRef}
-          className="h-[calc(100vh-5rem)] flex items-center justify-center relative overflow-hidden"
-        >
+        <section ref={heroRef} className="h-[calc(100vh-5rem)] flex items-center relative overflow-hidden">
           {/* Video Background */}
           <video
             autoPlay
@@ -91,18 +72,20 @@ export default function HomePage() {
           </video>
           {/* Overlay for better text readability */}
           <div className="absolute inset-0 bg-black/40 z-0"></div>
-          <div className="text-center z-10 px-4">
+          <div className="z-10 px-8 w-4/5">
             <h1 className="text-5xl md:text-8xl font-bold mb-6 text-shadow-glow">
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <span className="hero-gradient-text">{t("hero.title")}</span>
-              </motion.div>
+              <div>
+                <Typewriter
+                  texts={[t("hero.title"), t("hero.title-a"), t("hero.title-b"), t("hero.title-c")]}
+                  speed={150}
+                  delay={1000}
+                  cycleDelay={4000}
+                  pauseOnHover={true}
+                />
+              </div>
             </h1>
             <motion.p
-              className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto"
+              className="text-xl text-gray-300 mb-12 mx-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.0 }}
@@ -114,10 +97,9 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.2 }}
             >
-              <Button size="lg" className="cta-button text-lg px-8 py-6">
-                {t("hero.cta")}
-                <Play className="ml-3 w-5 h-5" />
-              </Button>
+              <ContactFormTrigger size="lg" className="cta-button text-lg px-8 py-6">
+                {t("contact.title")}
+              </ContactFormTrigger>
             </motion.div>
           </div>
           <motion.div
@@ -155,19 +137,23 @@ export default function HomePage() {
             {[
               {
                 title: "Fashion Brand X",
-                metric: "+500%",
+                metric: 500,
+                suffix: "%",
                 desc: "Content Volume Increase",
                 delay: "200ms",
               },
               {
                 title: "Tech Startup Y",
-                metric: "+250%",
+                metric: 250,
+                suffix: "%",
                 desc: "Engagement Rate Uplift",
                 delay: "400ms",
               },
               {
                 title: "Media Company Z",
-                metric: "-70%",
+                metric: 70,
+                prefix: "-",
+                suffix: "%",
                 desc: "Content Production Costs",
                 delay: "600ms",
               },
@@ -180,7 +166,15 @@ export default function HomePage() {
                 <div className="p-8">
                   <p className="text-lg font-semibold text-gray-600 dark:text-gray-300 mb-4">{caseStudy.title}</p>
                   <p className="text-6xl font-bold text-gray-900 dark:text-white mb-2 case-study-metric">
-                    {caseStudy.metric}
+                    <AnimatedNumber
+                      value={caseStudy.metric}
+                      prefix={caseStudy.prefix || ""}
+                      suffix={caseStudy.suffix || ""}
+                      duration={2}
+                      delay={index * 0.2}
+                      triggerOnVisible={true}
+                      className="text-6xl font-bold text-gray-900 dark:text-white"
+                    />
                   </p>
                   <p className="text-gray-500 dark:text-gray-400">{caseStudy.desc}</p>
                 </div>
@@ -265,10 +259,10 @@ export default function HomePage() {
                   Whether you&apos;re a creator looking to monetize or a brand ready to scale, your journey starts here.
                 </p>
                 <div className="flex flex-col md:flex-row justify-center gap-6">
-                  <Button size="lg" className="cta-button-secondary" onClick={() => setCreatorModalOpen(true)}>
+                  <Button size="lg" className="cta-button-secondary" onClick={() => openForm("creator")}>
                     <UserPlus className="mr-3" /> Apply as a Creator
                   </Button>
-                  <Button size="lg" className="cta-button" onClick={() => setBrandModalOpen(true)}>
+                  <Button size="lg" className="cta-button" onClick={() => openForm("brand")}>
                     <Briefcase className="mr-3" /> Partner as a Brand
                   </Button>
                 </div>
@@ -277,10 +271,6 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-
-      {/* Application Modals */}
-      <CreatorApplicationModal open={creatorModalOpen} onOpenChange={setCreatorModalOpen} />
-      <BrandApplicationModal open={brandModalOpen} onOpenChange={setBrandModalOpen} />
     </div>
   );
 }

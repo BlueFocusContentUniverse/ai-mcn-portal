@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import type React from "react";
 
+import { ContactFormProvider } from "@/components/ContactFormProvider";
 import { CookiesProviderWrapper } from "@/components/cookies-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import I18NProvider from "@/lib/i18n/client-provider";
@@ -51,7 +52,9 @@ export default async function RootLayout({
       <body className={cn("min-h-screen bg-background antialiased")}>
         <I18NProvider locale={lng ?? "en"}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <CookiesProviderWrapper>{children}</CookiesProviderWrapper>
+            <ContactFormProvider>
+              <CookiesProviderWrapper>{children}</CookiesProviderWrapper>
+            </ContactFormProvider>
           </ThemeProvider>
         </I18NProvider>
       </body>
