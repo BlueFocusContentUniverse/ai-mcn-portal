@@ -3,6 +3,7 @@
 import { AlertCircle, Building2, CheckCircle, Send, Users, X } from "lucide-react";
 import type React from "react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +11,6 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { submitContactForm } from "@/lib/actions";
-import { useTranslation } from "react-i18next";
 
 import { useContactForm } from "./ContactFormProvider";
 
@@ -146,7 +146,7 @@ export function ContactForm({
         }}
       >
         {/* Header */}
-        <div className="bg-white dark:bg-gray-900 p-6 rounded-t-2xl">
+        <div className="bg-white dark:bg-gray-900 p-6 rounded-t-2xl border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{t("contact.title")}</h2>
@@ -156,7 +156,7 @@ export function ContactForm({
               variant="ghost"
               size="sm"
               onClick={onClose}
-              className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               <X className="w-5 h-5" />
             </Button>
@@ -164,10 +164,12 @@ export function ContactForm({
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} autoComplete="off" className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} autoComplete="off" className="p-6 space-y-6 bg-white dark:bg-gray-900">
           {/* Service Type Selection */}
           <div className="space-y-3">
-            <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">I&apos;m interested in:</Label>
+            <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              {t("contact.serviceType.label")}
+            </Label>
             <div className="grid grid-cols-2 gap-4">
               <label className="relative">
                 <input
@@ -186,8 +188,10 @@ export function ContactForm({
                   }`}
                 >
                   <div className="text-center">
-                    <div className="font-semibold">Brand Partnership</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">Scale your content production</div>
+                    <div className="font-semibold">{t("contact.serviceType.brand.title")}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      {t("contact.serviceType.brand.subtitle")}
+                    </div>
                   </div>
                 </div>
               </label>
@@ -208,8 +212,10 @@ export function ContactForm({
                   }`}
                 >
                   <div className="text-center">
-                    <div className="font-semibold">Creator Application</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">Join our creator network</div>
+                    <div className="font-semibold">{t("contact.serviceType.creator.title")}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      {t("contact.serviceType.creator.subtitle")}
+                    </div>
                   </div>
                 </div>
               </label>
@@ -222,12 +228,12 @@ export function ContactForm({
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
                   <Building2 className="w-5 h-5" />
-                  <span>Brand Information</span>
+                  <span>{t("contact.brandInfo.title")}</span>
                 </h3>
 
                 <div className="space-y-2">
                   <Label htmlFor="brandName" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Brand Name *
+                    {t("contact.brandInfo.brandName.label")}
                   </Label>
                   <Input
                     id="brandName"
@@ -237,7 +243,7 @@ export function ContactForm({
                     value={formData.brandName}
                     onChange={handleInputChange}
                     className="w-full"
-                    placeholder="Your brand name"
+                    placeholder={t("contact.brandInfo.brandName.placeholder")}
                   />
                 </div>
               </div>
@@ -250,29 +256,31 @@ export function ContactForm({
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
                   <Users className="w-5 h-5" />
-                  <span>Creator Information</span>
+                  <span>{t("contact.creatorInfo.title")}</span>
                 </h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">Primary Platform</Label>
+                    <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      {t("contact.creatorInfo.platform.label")}
+                    </Label>
                     <Select value={formData.platform} onValueChange={(value) => handleSelectChange("platform", value)}>
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select platform" />
+                        <SelectValue placeholder={t("contact.creatorInfo.platform.placeholder")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="tiktok">TikTok</SelectItem>
-                        <SelectItem value="instagram">Instagram</SelectItem>
-                        <SelectItem value="youtube">YouTube</SelectItem>
-                        <SelectItem value="twitter">Twitter/X</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
+                        <SelectItem value="tiktok">{t("contact.creatorInfo.platform.options.tiktok")}</SelectItem>
+                        <SelectItem value="instagram">{t("contact.creatorInfo.platform.options.instagram")}</SelectItem>
+                        <SelectItem value="youtube">{t("contact.creatorInfo.platform.options.youtube")}</SelectItem>
+                        <SelectItem value="twitter">{t("contact.creatorInfo.platform.options.twitter")}</SelectItem>
+                        <SelectItem value="other">{t("contact.creatorInfo.platform.options.other")}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="socialMediaId" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Social Media ID/Username *
+                      {t("contact.creatorInfo.socialMediaId.label")}
                     </Label>
                     <Input
                       id="socialMediaId"
@@ -284,14 +292,14 @@ export function ContactForm({
                       className="w-full"
                       placeholder={
                         formData.platform === "tiktok"
-                          ? "@username"
+                          ? t("contact.creatorInfo.socialMediaId.placeholders.tiktok")
                           : formData.platform === "instagram"
-                            ? "@username"
+                            ? t("contact.creatorInfo.socialMediaId.placeholders.instagram")
                             : formData.platform === "youtube"
-                              ? "Channel name or ID"
+                              ? t("contact.creatorInfo.socialMediaId.placeholders.youtube")
                               : formData.platform === "twitter"
-                                ? "@username"
-                                : "Your platform username"
+                                ? t("contact.creatorInfo.socialMediaId.placeholders.twitter")
+                                : t("contact.creatorInfo.socialMediaId.placeholders.other")
                       }
                     />
                   </div>
@@ -300,7 +308,7 @@ export function ContactForm({
                 {formData.platform === "other" && (
                   <div className="space-y-2">
                     <Label htmlFor="otherPlatform" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Platform Name
+                      {t("contact.creatorInfo.otherPlatform.label")}
                     </Label>
                     <Input
                       id="otherPlatform"
@@ -309,7 +317,7 @@ export function ContactForm({
                       value={formData.otherPlatform}
                       onChange={handleInputChange}
                       className="w-full"
-                      placeholder="e.g., Twitch, LinkedIn, etc."
+                      placeholder={t("contact.creatorInfo.otherPlatform.placeholder")}
                     />
                   </div>
                 )}
@@ -321,13 +329,13 @@ export function ContactForm({
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
               <Users className="w-5 h-5" />
-              <span>Contact Information</span>
+              <span>{t("contact.contactInfo.title")}</span>
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Full Name *
+                  {t("contact.contactInfo.name.label")}
                 </Label>
                 <Input
                   id="name"
@@ -337,12 +345,12 @@ export function ContactForm({
                   value={formData.name}
                   onChange={handleInputChange}
                   className="w-full"
-                  placeholder="John Doe"
+                  placeholder={t("contact.contactInfo.name.placeholder")}
                 />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Email Address *
+                  {t("contact.contactInfo.email.label")}
                 </Label>
                 <Input
                   id="email"
@@ -352,7 +360,7 @@ export function ContactForm({
                   value={formData.email}
                   onChange={handleInputChange}
                   className="w-full"
-                  placeholder="john@company.com"
+                  placeholder={t("contact.contactInfo.email.placeholder")}
                 />
               </div>
             </div>
@@ -360,7 +368,7 @@ export function ContactForm({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="phone" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Phone Number
+                  {t("contact.contactInfo.phone.label")}
                 </Label>
                 <Input
                   id="phone"
@@ -369,7 +377,7 @@ export function ContactForm({
                   value={formData.phone}
                   onChange={handleInputChange}
                   className="w-full"
-                  placeholder="+1 (555) 123-4567"
+                  placeholder={t("contact.contactInfo.phone.placeholder")}
                 />
               </div>
             </div>
@@ -378,7 +386,7 @@ export function ContactForm({
           {/* Message */}
           <div className="space-y-2">
             <Label htmlFor="message" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Tell us about your project *
+              {t("contact.message.label")}
             </Label>
             <Textarea
               id="message"
@@ -389,8 +397,8 @@ export function ContactForm({
               className="w-full resize-none"
               placeholder={
                 formData.serviceType === "brand"
-                  ? "Describe your content goals, current challenges, and what you're looking to achieve..."
-                  : "Tell us about your content, audience, and what you're looking to achieve..."
+                  ? t("contact.message.placeholders.brand")
+                  : t("contact.message.placeholders.creator")
               }
             />
           </div>
@@ -398,28 +406,28 @@ export function ContactForm({
           {/* Submit Button */}
           <div className="flex justify-end space-x-4 pt-4">
             <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
-              Cancel
+              {t("contact.buttons.cancel")}
             </Button>
             <Button type="submit" disabled={isSubmitting} className="cta-button min-w-[120px]">
               {isSubmitting ? (
                 <div className="flex items-center space-x-2">
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  <span>Sending...</span>
+                  <span>{t("contact.buttons.sending")}</span>
                 </div>
               ) : submitStatus === "success" ? (
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-4 h-4" />
-                  <span>Sent!</span>
+                  <span>{t("contact.buttons.sent")}</span>
                 </div>
               ) : submitStatus === "error" ? (
                 <div className="flex items-center space-x-2">
                   <AlertCircle className="w-4 h-4" />
-                  <span>Try Again</span>
+                  <span>{t("contact.buttons.tryAgain")}</span>
                 </div>
               ) : (
                 <div className="flex items-center space-x-2">
                   <Send className="w-4 h-4" />
-                  <span>Submit</span>
+                  <span>{t("contact.buttons.submit")}</span>
                 </div>
               )}
             </Button>
@@ -431,11 +439,9 @@ export function ContactForm({
           <div className="mx-6 mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
             <div className="flex items-center space-x-2 text-green-800 dark:text-green-200">
               <CheckCircle className="w-5 h-5" />
-              <span className="font-medium">Message sent successfully!</span>
+              <span className="font-medium">{t("contact.messages.success.title")}</span>
             </div>
-            <p className="text-green-700 dark:text-green-300 text-sm mt-1">
-              We&apos;ll get back to you within 24 hours.
-            </p>
+            <p className="text-green-700 dark:text-green-300 text-sm mt-1">{t("contact.messages.success.subtitle")}</p>
           </div>
         )}
 
@@ -443,9 +449,9 @@ export function ContactForm({
           <div className="mx-6 mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
             <div className="flex items-center space-x-2 text-red-800 dark:text-red-200">
               <AlertCircle className="w-5 h-5" />
-              <span className="font-medium">Something went wrong</span>
+              <span className="font-medium">{t("contact.messages.error.title")}</span>
             </div>
-            <p className="text-red-700 dark:text-red-300 text-sm mt-1">Please try again or contact us directly.</p>
+            <p className="text-red-700 dark:text-red-300 text-sm mt-1">{t("contact.messages.error.subtitle")}</p>
           </div>
         )}
       </div>

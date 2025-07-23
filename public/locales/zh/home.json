@@ -10,25 +10,138 @@
   },
   "contact": {
     "title": "联系我们",
-    "subtitle": "让我们帮助您实现内容目标"
+    "subtitle": "让我们帮助您实现内容目标",
+    "serviceType": {
+      "label": "我感兴趣的是：",
+      "brand": {
+        "title": "品牌合作",
+        "subtitle": "规模化内容生产"
+      },
+      "creator": {
+        "title": "创作者申请",
+        "subtitle": "加入我们的创作者网络"
+      }
+    },
+    "brandInfo": {
+      "title": "品牌信息",
+      "brandName": {
+        "label": "品牌名称 *",
+        "placeholder": "您的品牌名称"
+      }
+    },
+    "creatorInfo": {
+      "title": "创作者信息",
+      "platform": {
+        "label": "主要平台",
+        "placeholder": "选择平台",
+        "options": {
+          "tiktok": "TikTok",
+          "instagram": "Instagram",
+          "youtube": "YouTube",
+          "twitter": "Twitter/X",
+          "other": "其他"
+        }
+      },
+      "socialMediaId": {
+        "label": "社交媒体ID/用户名 *",
+        "placeholders": {
+          "tiktok": "@用户名",
+          "instagram": "@用户名",
+          "youtube": "频道名称或ID",
+          "twitter": "@用户名",
+          "other": "您的平台用户名"
+        }
+      },
+      "otherPlatform": {
+        "label": "平台名称",
+        "placeholder": "例如：Twitch、LinkedIn等"
+      }
+    },
+    "contactInfo": {
+      "title": "联系信息",
+      "name": {
+        "label": "姓名 *",
+        "placeholder": "张三"
+      },
+      "email": {
+        "label": "邮箱地址 *",
+        "placeholder": "zhang@company.com"
+      },
+      "phone": {
+        "label": "电话号码",
+        "placeholder": "+86 138 0000 0000"
+      }
+    },
+    "message": {
+      "label": "告诉我们您的项目 *",
+      "placeholders": {
+        "brand": "描述您的内容目标、当前挑战以及您希望实现的目标...",
+        "creator": "告诉我们您的内容、受众以及您希望实现的目标..."
+      }
+    },
+    "buttons": {
+      "cancel": "取消",
+      "submit": "提交",
+      "sending": "发送中...",
+      "sent": "已发送！",
+      "tryAgain": "重试"
+    },
+    "messages": {
+      "success": {
+        "title": "消息发送成功！",
+        "subtitle": "我们将在24小时内回复您。"
+      },
+      "error": {
+        "title": "出现错误",
+        "subtitle": "请重试或直接联系我们。"
+      }
+    }
   },
   "features": {
+    "featuresSubTitle": "关键功能",
     "batchProduction": {
-      "title": "批量生产",
-      "desc": "AI驱动的海量内容生成"
+      "title": "智能创作",
+      "desc": "全流程规模化出品",
+      "features": [
+        "全局全维度热点抓取",
+        "多参数设置赋予内容个性化",
+        "避开平台算法机制，自身流量不受限",
+        "可扩展的生产流水线"
+      ]
     },
     "pipeline": {
-      "title": "自主研发管道",
-      "desc": "专有编辑和处理技术"
+      "title": "AI视频剪辑流水线",
+      "desc": "专有编辑和处理技术",
+      "features": [
+        "多内容生产Agent协同",
+        "MCP工具集成",
+        "人设，素材，音效，动效知识库",
+        "自研AI视频剪辑模型"
+      ]
     },
     "distribution": {
       "title": "全球分发",
-      "desc": "全球多平台覆盖"
+      "desc": "全球多平台覆盖",
+      "features": [
+        "一键多平台发布",
+        "弹性账号池",
+        "定制化接入"
+      ]
     },
     "management": {
       "title": "品牌资产管理",
-      "desc": "集中化品牌一致性"
+      "desc": "集中化品牌一致性",
+      "features": [
+        "社交，行为，交易数据分析",
+        "销售转化率优化",
+        "品牌资产沉淀"
+      ]
     }
+  },
+  "intro": {
+    "ourCore": "我们的核心",
+    "capabilities": "能力",
+    "subtitle": "为您的内容策略提供动力"
   },
   "capabilities": {
     "title": "产品能力",
@@ -61,11 +174,60 @@
       ]
     }
   },
+  "caseStudies": {
+    "title": "成功案例",
+    "subtitle": "合作伙伴的真实效果",
+    "title-catl": "宁德时代",
+    "title-tecno": "传音",
+    "title-honor": "荣耀",
+    "title-anker": "ANKER",
+    "desc-catl": "4小时内容片段创建",
+    "desc-tecno": "内容生产成本降低",
+    "desc-honor": "账号分发数量",
+    "desc-anker": "内容生产成本降低"
+  },
+  "cases": {
+    "hero": {
+      "title": "案例",
+      "titleHighlight": "研究",
+      "subtitle": "探索我们如何利用AI为各行各业带来创新营销解决方案，助力品牌实现增长目标"
+    },
+    "metrics": {
+      "engagement": "互动率",
+      "reach": "触达",
+      "conversion": "转化"
+    },
+    "categories": {
+      "fashion": "时尚与零售",
+      "technology": "科技",
+      "media": "媒体与娱乐"
+    },
+    "detail": {
+      "backToCases": "返回案例",
+      "challenge": "挑战",
+      "solution": "解决方案",
+      "results": "成果",
+      "contentVolume": "内容产量增加",
+      "engagementRates": "互动率提升",
+      "conversionRates": "转化率提升",
+      "costReduction": "营销成本降低",
+      "cta": {
+        "title": "准备实现类似成果？",
+        "subtitle": "让我们讨论如何帮助您的企业通过AI驱动的内容创作实现规模化",
+        "startProject": "开始您的项目",
+        "viewMoreCases": "查看更多案例"
+      }
+    }
+  },
   "client": {
     "title": "行业领导者信赖",
     "desc": "这些知名品牌正在使用我们的AI内容营销解决方案",
     "activeClients": "活跃客户",
     "contentPiecesCreated": "内容片段创建",
     "clientSatisfaction": "客户满意度"
+  },
+  "join": {
+    "title": "加入内容革命",
+    "subtitle": "无论您是创作者寻求变现，还是品牌准备扩张，您的旅程从这里开始"
   }
 } 

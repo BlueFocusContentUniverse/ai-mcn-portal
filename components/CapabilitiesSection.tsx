@@ -1,6 +1,6 @@
 "use client";
 
-import { BarChart3, Cpu, Eye, Layers, Network, Settings, Share2, Users, ChevronLeft, ChevronRight } from "lucide-react";
+import { BarChart3, ChevronLeft, ChevronRight, Cpu, Eye, Layers, Network, Settings, Share2, Users } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 

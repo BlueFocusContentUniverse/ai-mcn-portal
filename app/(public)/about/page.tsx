@@ -11,8 +11,8 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 text-shadow-glow">
-            <span className="hero-gradient-text">{t("hero.title", { defaultValue: "About Tomato Planet" })}</span>
+          <h1 className="text-5xl md:text-7xl font-bold mb-8">
+            <span className="section-gradient-text">{t("hero.title", { defaultValue: "About Tomato Planet" })}</span>
           </h1>
 
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
@@ -76,11 +76,15 @@ export default function AboutPage() {
                 <div className="grid grid-cols-2 gap-6">
                   <div>
                     <p className="text-3xl font-bold text-brand-red">500+</p>
-                    <p className="text-gray-500 dark:text-gray-400">{t("mission.stats.creators", { defaultValue: "Creators" })}</p>
+                    <p className="text-gray-500 dark:text-gray-400">
+                      {t("mission.stats.creators", { defaultValue: "Creators" })}
+                    </p>
                   </div>
                   <div>
                     <p className="text-3xl font-bold text-brand-red">10M+</p>
-                    <p className="text-gray-500 dark:text-gray-400">{t("mission.stats.views", { defaultValue: "Views" })}</p>
+                    <p className="text-gray-500 dark:text-gray-400">
+                      {t("mission.stats.views", { defaultValue: "Views" })}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -140,4 +144,4 @@ export default function AboutPage() {
       </section>
     </>
   );
-} 
+}

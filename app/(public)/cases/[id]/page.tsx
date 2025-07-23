@@ -1,11 +1,14 @@
 "use client";
 
-import { ArrowLeft, BarChart3, Globe, TrendingUp, Users } from "lucide-react";
+import { ArrowLeft, BarChart3, Globe, TrendingUp } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+
+import { ContactFormTrigger } from "@/components/ContactFormTrigger";
 
 // A custom hook to detect if an element is in the viewport
 const useOnScreen = (options: IntersectionObserverInit) => {
@@ -37,38 +40,14 @@ const useOnScreen = (options: IntersectionObserverInit) => {
 };
 
 const caseStudies = {
-  "jd-electronics": {
-    id: "jd-electronics",
-    title: "京东电器 X 肖战",
-    category: "Fashion & Retail",
-    description: `结合AIGC焦点和电器品类互动，以"未来"、"趋势"等关键词为核心，为3C家电品牌定制AI场景包装，为用户呈现了未来想象力和科技感触的未来生活`,
-    fullDescription:
-      "TVC中全程场景均为深度结合AIGC，面部AI使用率高达90%。以AI的想象力为场景营造的应用场景加上未来的想象，带领用户感受AI赋能的魅力，同时大大缩短了制作周期，节约了制作成本，体现出了物美价廉的核心。",
-    challenge: `全新的营销方式OPEN AD，即开放式广告，极大地考虑UGC效果，利用明星偶像话和物智能进行互动设计，用户产生"被制广告内容"，让众多友友"变演"，赋予"创作"，OPEN AD在粉丝圈层应用和引发志友关注，与品牌建设和AIGC#内信在AI字宙带行#话题不断发酵，站内直播带，吸引直播间人倍增参与。`,
-    solution:
-      "TVC中全程场景均为深度结合AIGC，面部AI使用率高达90%。以AI的想象力为场景营造的应用场景加上未来的想象，带领用户感受AI赋能的魅力，同时大大缩短了制作周期，节约了制作成本，体现出了物美价廉的核心",
-    results: {
-      engagement: "+500%",
-      reach: "+300%",
-      conversion: "+200%",
-      contentVolume: "+1000%",
-      costReduction: "-70%",
-    },
-    image: "/cases/京东X肖战生成式广告.png",
-    icon: TrendingUp,
-    color: "from-pink-500 to-red-500",
-    timeline: "6 months",
-    team: "5-person marketing team",
-  },
   catl: {
     id: "catl",
     title: "宁德时代 CATL",
-    category: "Technology",
-    description: "AI-powered content generation that scaled their marketing efforts 10x while reducing costs by 70%.",
-    fullDescription: `宁德时代作为全球领先的新能源电池公司，产品市场占有率年年位居世界前列，在全球新能源领域拥有极高的品牌影响力。在品牌宣传方面需要传递科技感和创新精神，突出"充电10分钟，神行800里"的产品优势，对于提升产品的持续竞争力，展现出"阿尔法蛋"的动力电池产品的各种强大性能具有重要意义`,
-    challenge:
-      "此次项目运用了Face Fusion AI换脸、Midjourney视觉生成、Chat GPT智能文案生成等AI技术，其中AI换脸和互动技术开发及优化，实施难度大",
-    solution: "产出与输出领先AI大片H5，线上与体验与线下展会大动态，项目落地广州汽车展会10天数据",
+    category: "technology",
+    description: "宁德时代港股上市，及零碳目的地发布会，4小时内极限制作及发布近百条形色各异的内容，并打出声量",
+    fullDescription: `4小时内从文案到素材处理到差异化成片剪辑，到多平台多账号快速分发，成功在一天内完成上百万的总播放`,
+    challenge: "客户对有时效性的短期内容爆发性事件，有需要内容制作能力，批量生产能力，快速铺陈能力",
+    solution: "利用AI技术，快速生成差异化内容，并快速分发",
     results: {
       engagement: "+250%",
       reach: "+400%",
@@ -76,23 +55,45 @@ const caseStudies = {
       contentVolume: "+1000%",
       costReduction: "-70%",
     },
-    image: "/cases/宁德时代AI换脸TVC.png",
+    image: "/cases/catl.png",
     icon: BarChart3,
     color: "from-blue-500 to-purple-500",
     timeline: "4 months",
     team: "3-person marketing team",
   },
-  "jd-programmer-day": {
-    id: "jd-programmer-day",
-    title: "京东电脑 X 程序员节 | 爸妈的第一个AI作品",
-    category: "Media & Entertainment",
-    description: "当程序员节遇见重阳节，京东电脑联合制作「爸妈的第一个AI作品」，用科技温情满满地连接两代人",
-    fullDescription: `为1023重阳节暨1024程序员节，京东3C电脑自策划重阳节AI作品《爸妈的第一个AI作品》联合两个节日一起，让AI赋能年轻程序员们回馈父母。
-
-通过《爸妈的第一个AI作品》在京东电脑人群中科技感和社会性话题爆发，让年轻人购买个新本本带回家给爷爷奶奶们一起体验AI智能化的新浪潮，让程序员和父辈们一起感受科技，有见程序员节这一年都很难回家的天职，有消费京东电脑社会责任感`,
-    challenge: "",
+  anker: {
+    id: "anker",
+    title: "ANKER",
+    category: "technology",
+    description: `作为全球知名的3C数码配件类厂商，品牌已成功进入全球多个国家市场。在拓展欧洲地区
+（如美国、英国、澳大利亚等）的过程中，我们通过提供高度本地化的流媒体视频内容，助力客户精准触达目标用户群体`,
+    fullDescription:
+      "双方联合打造了多场景、多语言适配的短视频内容，覆盖客户旗下充电宝、耳机、吸尘器、扫地机器人等多品类产品，有效提升品牌本土化影响力",
+    challenge: `拓展欧美地区的过程中，客户产品需要快速在当地市场打开声量`,
     solution:
-      "H2端AI结合宣传的广大用户群体跨代沟通，在为指导长辈们了解新兴数字科技被输出支持，比心生活上的温情陪伴，多平台三端传播矩阵亮点",
+      "我们协助客户在TikTok、YouTube、Instagram等平台，通过多场景、多语言适配的短视频内容，覆盖客户旗下充电宝、耳机、吸尘器、扫地机器人等多品类产品，有效提升品牌本土化影响力",
+    results: {
+      engagement: "+500%",
+      reach: "+300%",
+      conversion: "+200%",
+      contentVolume: "+1000%",
+      costReduction: "-70%",
+    },
+    image: "/cases/anker.png",
+    icon: TrendingUp,
+    color: "from-pink-500 to-red-500",
+    timeline: "6 months",
+    team: "5-person marketing team",
+  },
+  honor: {
+    id: "honor",
+    title: "荣耀手机",
+    category: "technology",
+    description:
+      "某手机品牌客户拓展俄罗斯市场的需求，鉴于当地TikTok等国际短视频平台推广受限、但年轻用户对短视频内容高度活跃的现状，我司在新品首发期间，为其量身定制了​“俄罗斯本土化短视频饱和式曝光”方案",
+    fullDescription: `针对某手机品牌客户拓展俄罗斯市场的需求，鉴于当地TikTok等国际短视频平台推广受限、但年轻用户对短视频内容高度活跃的现状，我司在新品首发期间，为其量身定制了​“俄罗斯本土化短视频饱和式曝光”方案`,
+    challenge: "品牌在俄罗斯市场推广受限，年轻人不认可，且传统营销广告在当地TikTok等国际短视频平台推广受限",
+    solution: "实拍+二创，自研批量内容产线；精准平台布局，适配本土生态；矩阵账号分发，饱和覆盖用户心智",
     results: {
       engagement: "+180%",
       reach: "+600%",
@@ -100,7 +101,7 @@ const caseStudies = {
       contentVolume: "+800%",
       costReduction: "-60%",
     },
-    image: "/cases/京东1024程序员节.png",
+    image: "/cases/honor.png",
     icon: Globe,
     color: "from-green-500 to-teal-500",
     timeline: "8 months",
@@ -115,6 +116,7 @@ interface CaseDetailPageProps {
 }
 
 export default function CaseDetailPage({ params }: CaseDetailPageProps) {
+  const { t } = useTranslation(["home"]);
   const caseStudy = caseStudies[params.id as keyof typeof caseStudies];
   const [heroRef, heroIsVisible] = useOnScreen({ threshold: 0.1 });
   const [contentRef, contentIsVisible] = useOnScreen({ threshold: 0.1 });
@@ -124,81 +126,81 @@ export default function CaseDetailPage({ params }: CaseDetailPageProps) {
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-background text-brand-white overflow-x-hidden">
       {/* Hero Section */}
-      <section
-        ref={heroRef}
-        className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-purple-900/20 to-blue-900/20"
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={heroIsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8 }}
-          >
-            <Link
-              href="/cases"
-              className="inline-flex items-center space-x-2 text-brand-red hover:text-red-400 transition-colors mb-8"
+      <section ref={heroRef} className="h-[calc(100vh-5rem)] flex items-center relative overflow-hidden">
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          style={{ filter: "brightness(0.5) contrast(1.2)" }}
+        >
+          <source src="/video/hero-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40 z-0"></div>
+
+        <div className="z-10 px-8 w-full">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={heroIsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.8 }}
             >
-              <ArrowLeft className="w-5 h-5" />
-              <span>Back to Cases</span>
-            </Link>
-
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="flex items-center space-x-4 mb-6">
-                  <span className="px-4 py-2 bg-brand-red/20 text-brand-red rounded-full text-sm font-semibold">
-                    {caseStudy.category}
-                  </span>
-                  <span className="text-gray-500 dark:text-gray-400">•</span>
-                  <span className="text-gray-500 dark:text-gray-400">{caseStudy.timeline}</span>
-                  <span className="text-gray-500 dark:text-gray-400">•</span>
-                  <span className="text-gray-500 dark:text-gray-400">{caseStudy.team}</span>
-                </div>
-
-                <h1 className="text-4xl md:text-6xl font-bold mb-6">{caseStudy.title}</h1>
-
-                <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">{caseStudy.fullDescription}</p>
-
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">{caseStudy.results.engagement}</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">Engagement</div>
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                  <div className="flex items-center space-x-4 mb-6">
+                    <span className="px-4 py-2 bg-brand-red/20 text-brand-red rounded-full text-sm font-semibold">
+                      {t(`cases.categories.${caseStudy.category}`)}
+                    </span>
                   </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">{caseStudy.results.reach}</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">Reach</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">{caseStudy.results.conversion}</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">Conversion</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">{caseStudy.results.costReduction}</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">Cost Reduction</div>
+
+                  <h1 className="text-4xl md:text-6xl font-bold mb-6 text-shadow-glow">{caseStudy.title}</h1>
+
+                  <p className="text-xl text-gray-300 mb-8 leading-relaxed">{caseStudy.fullDescription}</p>
+
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-white">{caseStudy.results.engagement}</div>
+                      <div className="text-sm text-gray-400">{t("cases.metrics.engagement")}</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-white">{caseStudy.results.reach}</div>
+                      <div className="text-sm text-gray-400">{t("cases.metrics.reach")}</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-white">{caseStudy.results.conversion}</div>
+                      <div className="text-sm text-gray-400">{t("cases.metrics.conversion")}</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-white">{caseStudy.results.costReduction}</div>
+                      <div className="text-sm text-gray-400">{t("cases.detail.costReduction")}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="relative">
-                <div
-                  className={`aspect-square bg-gradient-to-br ${caseStudy.color} rounded-2xl p-8 flex items-center justify-center`}
-                >
-                  <Image
-                    src={caseStudy.image}
-                    alt={caseStudy.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
+                <div className="relative">
+                  <div
+                    className={`aspect-square bg-gradient-to-br ${caseStudy.color} rounded-2xl p-8 flex items-center justify-center shadow-2xl`}
+                  >
+                    <Image src={caseStudy.image} alt={caseStudy.title} fill className="object-cover rounded-xl" />
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Content Section */}
-      <section ref={contentRef} className="py-24 px-4 sm:px-6 lg:px-8">
+      <section
+        ref={contentRef}
+        className={`py-24 px-4 sm:px-6 lg:px-8 transition-opacity duration-1000 ${contentIsVisible ? "opacity-100" : "opacity-0"}`}
+      >
         <div className="max-w-4xl mx-auto">
           <motion.div
             className="grid md:grid-cols-3 gap-12"
@@ -207,36 +209,44 @@ export default function CaseDetailPage({ params }: CaseDetailPageProps) {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             {/* Challenge */}
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">The Challenge</h3>
+            <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl border border-gray-200 dark:border-gray-700">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t("cases.detail.challenge")}</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{caseStudy.challenge}</p>
             </div>
 
             {/* Solution */}
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Our Solution</h3>
+            <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl border border-gray-200 dark:border-gray-700">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t("cases.detail.solution")}</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{caseStudy.solution}</p>
             </div>
 
             {/* Results */}
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">The Results</h3>
+            <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl border border-gray-200 dark:border-gray-700">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t("cases.detail.results")}</h3>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-brand-red rounded-full"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Content volume increased by {caseStudy.results.contentVolume}</span>
+                  <span className="text-gray-600 dark:text-gray-300">
+                    {t("cases.detail.contentVolume")} {caseStudy.results.contentVolume}
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-brand-red rounded-full"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Engagement rates improved by {caseStudy.results.engagement}</span>
+                  <span className="text-gray-600 dark:text-gray-300">
+                    {t("cases.detail.engagementRates")} {caseStudy.results.engagement}
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-brand-red rounded-full"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Conversion rates increased by {caseStudy.results.conversion}</span>
+                  <span className="text-gray-600 dark:text-gray-300">
+                    {t("cases.detail.conversionRates")} {caseStudy.results.conversion}
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-brand-red rounded-full"></div>
-                  <span className="text-gray-600 dark:text-gray-300">Marketing costs reduced by {caseStudy.results.costReduction}</span>
+                  <span className="text-gray-600 dark:text-gray-300">
+                    {t("cases.detail.costReduction")} {caseStudy.results.costReduction}
+                  </span>
                 </div>
               </div>
             </div>
@@ -244,32 +254,21 @@ export default function CaseDetailPage({ params }: CaseDetailPageProps) {
 
           {/* CTA */}
           <motion.div
-            className="text-center mt-16 p-8 bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-white/10"
+            className="text-center mt-16 p-8 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={contentIsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Ready to Achieve Similar Results?</h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Let&apos;s discuss how we can help your business scale with AI-powered content creation
-            </p>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{t("cases.detail.cta.title")}</h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-6">{t("cases.detail.cta.subtitle")}</p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link
-                href="/contact"
-                className="bg-gradient-to-r from-brand-red to-red-600 text-gray-900 dark:text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-opacity"
-              >
-                Start Your Project
-              </Link>
-              <Link
-                href="/cases"
-                className="border border-white/20 text-gray-900 dark:text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors"
-              >
-                View More Cases
-              </Link>
+              <ContactFormTrigger className="bg-gradient-to-r from-brand-red to-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-opacity">
+                {t("contact.title")}
+              </ContactFormTrigger>
             </div>
           </motion.div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

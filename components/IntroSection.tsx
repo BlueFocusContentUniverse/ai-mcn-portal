@@ -52,11 +52,12 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
       title: t("features.batchProduction.title"),
       description: t("features.batchProduction.desc"),
       image: "/placeholder.jpg", // You can replace with actual images
+      videoUrl: "/video/pipeline.mp4", // Optional video URL
       features: [
-        "AI-powered content generation",
-        "Batch processing capabilities",
-        "Quality assurance automation",
-        "Scalable production pipeline",
+        t("features.batchProduction.features.0"),
+        t("features.batchProduction.features.1"),
+        t("features.batchProduction.features.2"),
+        t("features.batchProduction.features.3"),
       ],
     },
     {
@@ -65,11 +66,12 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
       title: t("features.pipeline.title"),
       description: t("features.pipeline.desc"),
       image: "/placeholder.jpg",
+      videoUrl: "/video/pipeline.mp4", // Optional video URL
       features: [
-        "Workflow automation",
-        "Real-time collaboration",
-        "Version control system",
-        "Performance optimization",
+        t("features.pipeline.features.0"),
+        t("features.pipeline.features.1"),
+        t("features.pipeline.features.2"),
+        t("features.pipeline.features.3"),
       ],
     },
     {
@@ -78,11 +80,11 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
       title: t("features.distribution.title"),
       description: t("features.distribution.desc"),
       image: "/placeholder.jpg",
+      videoUrl: "/video/pipeline.mp4", // Optional video URL
       features: [
-        "Multi-platform publishing",
-        "Global content distribution",
-        "Audience targeting",
-        "Analytics integration",
+        t("features.distribution.features.0"),
+        t("features.distribution.features.1"),
+        t("features.distribution.features.2"),
       ],
     },
     {
@@ -90,12 +92,11 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
       icon: Database,
       title: t("features.management.title"),
       description: t("features.management.desc"),
-      image: "/placeholder.jpg",
+      image: "/assets-management.png",
       features: [
-        "Centralized content hub",
-        "Asset management system",
-        "Team collaboration tools",
-        "Advanced analytics dashboard",
+        t("features.management.features.0"),
+        t("features.management.features.1"),
+        t("features.management.features.2"),
       ],
     },
   ];
@@ -114,11 +115,9 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Our Core <span className="text-brand-red">Capabilities</span>
+            {t("intro.ourCore")} <span className="section-gradient-text">{t("intro.capabilities")}</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Discover how our AI-powered platform transforms content creation and distribution
-          </p>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{t("intro.subtitle")}</p>
         </motion.div>
 
         {/* Tab Navigation */}
@@ -169,7 +168,9 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Key Features</h4>
+              <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                {t("features.featuresSubTitle")}
+              </h4>
               <div className="grid gap-3">
                 {tabs[activeTab].features.map((feature, index) => (
                   <motion.div
@@ -187,7 +188,7 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
             </motion.div>
           </div>
 
-          {/* Image */}
+          {/* Image/Video */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -195,17 +196,33 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 p-8">
-              <div className="aspect-video bg-gradient-to-br from-brand-red/20 to-red-600/20 rounded-xl flex items-center justify-center">
-                {React.createElement(tabs[activeTab].icon, { className: "w-24 h-24 text-brand-red opacity-60" })}
-              </div>
-              {/* You can replace the icon with actual images */}
-              {/* <Image
-                src={tabs[activeTab].image}
-                alt={tabs[activeTab].title}
-                width={600}
-                height={400}
-                className="w-full h-auto rounded-xl"
-              /> */}
+              {tabs[activeTab].videoUrl ? (
+                <div className="aspect-video rounded-xl overflow-hidden">
+                  <video
+                    src={tabs[activeTab].videoUrl}
+                    className="w-full h-full object-cover"
+                    controls
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              ) : (
+                <div className="aspect-video bg-gradient-to-br from-brand-red/20 to-red-600/20 rounded-xl flex items-center justify-center">
+                  {/* {React.createElement(tabs[activeTab].icon, { className: "w-24 h-24 text-brand-red opacity-60" })} */}
+                  {/* You can replace the icon with actual images */}
+                  <Image
+                    src={tabs[activeTab].image}
+                    alt={tabs[activeTab].title}
+                    width={550}
+                    height={320}
+                    className="w-full h-auto rounded-xl"
+                  />
+                </div>
+              )}
             </div>
           </motion.div>
         </motion.div>

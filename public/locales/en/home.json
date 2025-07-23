@@ -10,25 +10,138 @@
   },
   "contact": {
     "title": "Contact Us",
-    "subtitle": "We're here to help you achieve your content goals"
+    "subtitle": "We're here to help you achieve your content goals",
+    "serviceType": {
+      "label": "I'm interested in:",
+      "brand": {
+        "title": "Brand Partnership",
+        "subtitle": "Scale your content production"
+      },
+      "creator": {
+        "title": "Creator Application",
+        "subtitle": "Join our creator network"
+      }
+    },
+    "brandInfo": {
+      "title": "Brand Information",
+      "brandName": {
+        "label": "Brand Name *",
+        "placeholder": "Your brand name"
+      }
+    },
+    "creatorInfo": {
+      "title": "Creator Information",
+      "platform": {
+        "label": "Primary Platform",
+        "placeholder": "Select platform",
+        "options": {
+          "tiktok": "TikTok",
+          "instagram": "Instagram",
+          "youtube": "YouTube",
+          "twitter": "Twitter/X",
+          "other": "Other"
+        }
+      },
+      "socialMediaId": {
+        "label": "Social Media ID/Username *",
+        "placeholders": {
+          "tiktok": "@username",
+          "instagram": "@username",
+          "youtube": "Channel name or ID",
+          "twitter": "@username",
+          "other": "Your platform username"
+        }
+      },
+      "otherPlatform": {
+        "label": "Platform Name",
+        "placeholder": "e.g., Twitch, LinkedIn, etc."
+      }
+    },
+    "contactInfo": {
+      "title": "Contact Information",
+      "name": {
+        "label": "Full Name *",
+        "placeholder": "John Doe"
+      },
+      "email": {
+        "label": "Email Address *",
+        "placeholder": "john@company.com"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "+1 (555) 123-4567"
+      }
+    },
+    "message": {
+      "label": "Tell us about your project *",
+      "placeholders": {
+        "brand": "Describe your content goals, current challenges, and what you're looking to achieve...",
+        "creator": "Tell us about your content, audience, and what you're looking to achieve..."
+      }
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "submit": "Submit",
+      "sending": "Sending...",
+      "sent": "Sent!",
+      "tryAgain": "Try Again"
+    },
+    "messages": {
+      "success": {
+        "title": "Message sent successfully!",
+        "subtitle": "We'll get back to you within 24 hours."
+      },
+      "error": {
+        "title": "Something went wrong",
+        "subtitle": "Please try again or contact us directly."
+      }
+    }
   },
   "features": {
     "batchProduction": {
       "title": "Batch Production",
-      "desc": "AI-powered mass content generation"
+      "desc": "AI-powered mass content generation",
+      "featuresTitle": "Key Features",
+      "features": [
+        "AI-powered mass content generation",
+        "Quality assurance automation",
+        "Scalable production pipeline",
+        "AI-powered mass content generation"
+      ]
     },
     "pipeline": {
-      "title": "Self-developed Pipeline",
-      "desc": "Proprietary editing and processing"
+      "title": "AI Video Editing Pipeline",
+      "desc": "Proprietary editing and processing",
+      "features": [
+        "Multi-content production Agent",
+        "MCP tool integration",
+        "Personality, Material, Sound, Effect knowledge base",
+        "Self-developed AI video editing model"
+      ]
     },
     "distribution": {
       "title": "Global Distribution",
-      "desc": "Worldwide multi-platform reach"
+      "desc": "Worldwide multi-platform reach",
+      "features": [
+        "One-click multi-platform publishing",
+        "Elastic account pool",
+        "Customized integration"
+      ]
     },
     "management": {
       "title": "Brand Asset Management",
-      "desc": "Centralized brand consistency"
+      "desc": "Centralized brand consistency",
+      "features": [
+        "Social, behavior, transaction data analysis",
+        "Sales conversion rate optimization",
+        "Brand asset accumulation"
+      ]
     }
+  },
+  "intro": {
+    "ourCore": "Our Core",
+    "capabilities": "Capabilities",
+    "subtitle": "Power your content strategy"
   },
   "capabilities": {
     "title": "Product Capabilities",
@@ -61,11 +174,60 @@
       ]
     }
   },
+  "caseStudies": {
+    "title": "Proven Results",
+    "subtitle": "Real-world impact delivered to our partners.",
+    "title-catl": "CATL",
+    "title-tecno": "TECNO",
+    "title-honor": "HONOR",
+    "title-anker": "ANKER",
+    "desc-catl": "4 hours content pieces created",
+    "desc-tecno": "70% content production cost reduction",
+    "desc-honor": "200+ account distribution",
+    "desc-anker": "70% content production cost reduction"
+  },
+  "cases": {
+    "hero": {
+      "title": "Case",
+      "titleHighlight": "Studies",
+      "subtitle": "Explore how we leverage AI to bring innovative marketing solutions to various industries, helping brands achieve their growth goals"
+    },
+    "metrics": {
+      "engagement": "Engagement",
+      "reach": "Reach",
+      "conversion": "Conversion"
+    },
+    "categories": {
+      "fashion": "Fashion & Retail",
+      "technology": "Technology",
+      "media": "Media & Entertainment"
+    },
+    "detail": {
+      "backToCases": "Back to Cases",
+      "challenge": "The Challenge",
+      "solution": "Our Solution",
+      "results": "The Results",
+      "contentVolume": "Content volume increased by",
+      "engagementRates": "Engagement rates improved by",
+      "conversionRates": "Conversion rates increased by",
+      "costReduction": "Marketing costs reduced by",
+      "cta": {
+        "title": "Ready to Achieve Similar Results?",
+        "subtitle": "Let's discuss how we can help your business scale with AI-powered content creation",
+        "startProject": "Start Your Project",
+        "viewMoreCases": "View More Cases"
+      }
+    }
+  },
   "client": {
     "title": "Trusted by Industry Leaders",
     "desc": "These renowned brands are using our AI content marketing solutions",
     "activeClients": "Active Clients",
     "contentPiecesCreated": "Content Pieces Created",
     "clientSatisfaction": "Client Satisfaction"
+  },
+  "join": {
+    "title": "Join the Content Revolution",
+    "subtitle": "Whether you're a creator looking to monetize or a brand ready to scale, your journey starts here."
   }
 } 

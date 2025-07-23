@@ -90,9 +90,6 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
             <Link href="/about" className="nav-link">
               {t("nav.about", { ns: "navigation" })}
             </Link>
-            <Link href="#contact" className="nav-link">
-              {t("nav.contact", { ns: "navigation" })}
-            </Link>
           </div>
           <p className="text-gray-500">&copy; {new Date().getFullYear()} Tomato Planet. All rights reserved.</p>
         </div>
