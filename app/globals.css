@@ -311,7 +311,7 @@
   }
 
   .cta-card {
-    @apply relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-red/10 via-red-400/5 to-brand-red/10 dark:from-brand-red/20 dark:via-brand-green/10 dark:to-brand-red/20 border border-gray-200 dark:border-white/10 shadow-xl dark:shadow-none;
+    @apply relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-red/10 via-red-400/5 to-brand-red/10 dark:from-brand-red/20 dark:via-brand-red/10 dark:to-brand-red/20 border border-gray-200 dark:border-white/10 shadow-xl dark:shadow-none;
   }
 
   /* Logo dark mode reversal styles */

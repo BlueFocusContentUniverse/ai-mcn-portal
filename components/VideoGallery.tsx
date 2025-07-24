@@ -1,13 +1,14 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 interface VideoThumbnail {
   id: string;
   videoUrl: string;
   textColor: string;
+  posterUrl?: string;
 }
 
 interface VideoGalleryProps {
@@ -18,45 +19,89 @@ export function VideoGallery({ className = "" }: VideoGalleryProps) {
   const { t } = useTranslation(["home"]);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [playingVideos, setPlayingVideos] = useState<Set<string>>(new Set());
+  const [loadedVideos, setLoadedVideos] = useState<Set<string>>(new Set());
+  const [isLoading, setIsLoading] = useState(true);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   const videoThumbnails: VideoThumbnail[] = [
     {
       id: "video-1",
       videoUrl: "/video/gallery/1.mp4",
       textColor: "text-white",
+      posterUrl: "/placeholder.jpg",
     },
     {
       id: "video-2",
       videoUrl: "/video/gallery/2.mp4",
       textColor: "text-white",
+      posterUrl: "/placeholder.jpg",
     },
     {
       id: "video-3",
       videoUrl: "/video/gallery/3.mp4",
       textColor: "text-orange-500",
+      posterUrl: "/placeholder.jpg",
     },
     {
       id: "video-4",
       videoUrl: "/video/gallery/4.mp4",
       textColor: "text-green-500",
+      posterUrl: "/placeholder.jpg",
     },
     {
       id: "video-5",
       videoUrl: "/video/gallery/5.mp4",
       textColor: "text-orange-500",
+      posterUrl: "/placeholder.jpg",
     },
     {
       id: "video-6",
       videoUrl: "/video/gallery/6.mp4",
       textColor: "text-purple-500",
+      posterUrl: "/placeholder.jpg",
     },
     {
       id: "video-7",
       videoUrl: "/video/gallery/7.mp4",
       textColor: "text-purple-500",
-      textPosition: "above-element",
+      posterUrl: "/placeholder.jpg",
     },
   ];
+
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const videoId = entry.target.getAttribute("data-video-id");
+            if (videoId && !loadedVideos.has(videoId)) {
+              setLoadedVideos((prev) => new Set(prev).add(videoId));
+            }
+          }
+        });
+      },
+      {
+        rootMargin: "50px",
+        threshold: 0.1,
+      },
+    );
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, [loadedVideos]);
+
+  // Simulate backend loading delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleVideoClick = (videoId: string) => {
     setSelectedVideo(videoId);
@@ -74,6 +119,26 @@ export function VideoGallery({ className = "" }: VideoGalleryProps) {
     });
   };
 
+  const handleVideoLoad = (videoId: string) => {
+    setLoadedVideos((prev) => new Set(prev).add(videoId));
+  };
+
+  if (isLoading) {
+    return (
+      <section className={`pb-16 px-4 sm:px-6 lg:px-8 ${className}`}>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex gap-4 overflow-x-auto pb-4">
+            {[...Array(7)].map((_, index) => (
+              <div key={index} className="flex-shrink-0 w-64 h-96 relative">
+                <div className="w-full h-full rounded-lg bg-gray-200 dark:bg-gray-800 animate-pulse" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className={`pb-16 px-4 sm:px-6 lg:px-8 ${className}`}>
       <div className="max-w-7xl mx-auto">
@@ -87,6 +152,12 @@ export function VideoGallery({ className = "" }: VideoGalleryProps) {
             {videoThumbnails.map((video, index) => (
               <motion.div
                 key={video.id}
+                ref={(el) => {
+                  if (el && observerRef.current) {
+                    observerRef.current.observe(el);
+                  }
+                }}
+                data-video-id={video.id}
                 className="flex-shrink-0 w-64 h-96 relative group cursor-pointer"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -95,22 +166,31 @@ export function VideoGallery({ className = "" }: VideoGalleryProps) {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handleVideoClick(video.id)}
               >
-                {/* Video */}
+                {/* Video with lazy loading */}
                 <div className="w-full h-full rounded-lg overflow-hidden bg-gray-200 dark:bg-gray-800 relative">
-                  <video
-                    src={video.videoUrl}
-                    className="w-full h-full object-cover"
-                    disableRemotePlayback
-                    playsInline
-                    autoPlay
-                    muted
-                    loop
-                    onPlay={() => handleVideoPlay(video.id)}
-                    onPause={() => handleVideoPause(video.id)}
-                  />
+                  {loadedVideos.has(video.id) ? (
+                    <video
+                      src={video.videoUrl}
+                      poster={video.posterUrl}
+                      className="w-full h-full object-cover"
+                      disableRemotePlayback
+                      playsInline
+                      autoPlay
+                      muted
+                      loop
+                      preload="metadata"
+                      onPlay={() => handleVideoPlay(video.id)}
+                      onPause={() => handleVideoPause(video.id)}
+                      onLoadedData={() => handleVideoLoad(video.id)}
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 dark:border-white" />
+                    </div>
+                  )}
 
                   {/* Play button overlay - only show when video is not playing */}
-                  {!playingVideos.has(video.id) && (
+                  {!playingVideos.has(video.id) && loadedVideos.has(video.id) && (
                     <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
                       <div className="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <svg className="w-8 h-8 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
@@ -145,6 +225,7 @@ export function VideoGallery({ className = "" }: VideoGalleryProps) {
                   disableRemotePlayback
                   playsInline
                   autoPlay
+                  preload="auto"
                 />
               </div>
             </div>
