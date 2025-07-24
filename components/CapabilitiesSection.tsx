@@ -114,7 +114,7 @@ export function CapabilitiesSection({ className = "", autoPlayInterval = 5000 }:
     >
       <div className="max-w-7xl mx-auto text-center mb-16 px-4">
         <h2 className="section-title">
-          <span className="section-gradient-text">{t("capabilities.title")}</span>
+          <span className="section-text-brand-red">{t("capabilities.title")}</span>
         </h2>
         <p className="section-subtitle">{t("capabilities.subtitle")}</p>
       </div>

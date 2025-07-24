@@ -52,7 +52,7 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
       title: t("features.batchProduction.title"),
       description: t("features.batchProduction.desc"),
       image: "/placeholder.jpg", // You can replace with actual images
-      videoUrl: "/video/pipeline.mp4", // Optional video URL
+      videoUrl: "/video/trendjet.mp4", // Optional video URL
       features: [
         t("features.batchProduction.features.0"),
         t("features.batchProduction.features.1"),
@@ -80,7 +80,7 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
       title: t("features.distribution.title"),
       description: t("features.distribution.desc"),
       image: "/placeholder.jpg",
-      videoUrl: "/video/pipeline.mp4", // Optional video URL
+      videoUrl: "/video/distribution.mp4", // Optional video URL
       features: [
         t("features.distribution.features.0"),
         t("features.distribution.features.1"),
@@ -115,7 +115,7 @@ export function IntroSection({ className = "" }: IntroSectionProps) {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            {t("intro.ourCore")} <span className="section-gradient-text">{t("intro.capabilities")}</span>
+            {t("intro.ourCore")} <span className="section-text-brand-red">{t("intro.capabilities")}</span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{t("intro.subtitle")}</p>
         </motion.div>

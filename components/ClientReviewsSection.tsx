@@ -54,7 +54,7 @@ export function ClientReviewsSection({ className = "" }: ClientReviewsSectionPro
     >
       <div className="max-w-7xl mx-auto text-center mb-16">
         <h2 className="section-title">
-          <span className="section-gradient-text">{t("reviews.title")}</span>
+          <span className="section-text-brand-red">{t("reviews.title")}</span>
         </h2>
       </div>
       <div className="scrolling-reviews">

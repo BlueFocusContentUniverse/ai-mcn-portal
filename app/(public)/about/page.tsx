@@ -12,7 +12,7 @@ export default function AboutPage() {
       <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-8">
-            <span className="section-gradient-text">{t("hero.title", { defaultValue: "About Tomato Planet" })}</span>
+            <span className="section-text-brand-red">{t("hero.title", { defaultValue: "About Tomato Planet" })}</span>
           </h1>
 
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
@@ -29,7 +29,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold mb-6 section-gradient-text">
+              <h2 className="text-4xl font-bold mb-6 section-text-brand-red">
                 {t("mission.title", { defaultValue: "Our Mission" })}
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
@@ -96,7 +96,7 @@ export default function AboutPage() {
       {/* Values Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center section-gradient-text">
+          <h2 className="text-4xl font-bold mb-12 text-center section-text-brand-red">
             {t("values.title", { defaultValue: "Our Values" })}
           </h2>
 

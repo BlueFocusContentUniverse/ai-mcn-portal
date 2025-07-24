@@ -67,7 +67,7 @@ export default function HomePage() {
           {/* Overlay for better text readability */}
           <div className="absolute inset-0 bg-black/40 z-0"></div>
           <div className="z-10 px-8 w-4/5">
-            <h1 className="text-5xl md:text-8xl font-bold mb-6 text-shadow-glow">
+            <h1 className="text-5xl md:text-8xl font-bold mb-6">
               <div>
                 <Typewriter
                   texts={[t("hero.title"), t("hero.title-a"), t("hero.title-b"), t("hero.title-c")]}

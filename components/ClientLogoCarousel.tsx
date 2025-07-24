@@ -122,7 +122,7 @@ export function ClientLogoCarousel({ className = "" }: ClientLogoCarouselProps) 
           transition={{ duration: 0.8 }}
         >
           <h2 className="section-title">
-            <span className="section-gradient-text">{t("client.title", { ns: "home" })}</span>
+            <span className="section-text-brand-red">{t("client.title", { ns: "home" })}</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
             {t("client.desc", { ns: "home" })}

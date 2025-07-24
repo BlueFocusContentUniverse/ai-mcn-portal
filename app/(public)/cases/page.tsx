@@ -113,8 +113,8 @@ export default function CasesPage() {
               animate={heroIsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl md:text-8xl font-bold mb-6 text-shadow-glow">
-                {t("cases.hero.title")} <span className="section-gradient-text">{t("cases.hero.titleHighlight")}</span>
+              <h1 className="text-5xl md:text-8xl font-bold mb-6">
+                {t("cases.hero.title")} <span className="section-text-brand-red">{t("cases.hero.titleHighlight")}</span>
               </h1>
               <motion.p
                 className="text-xl text-gray-300 mb-12 mx-auto max-w-4xl"

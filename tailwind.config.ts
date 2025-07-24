@@ -25,7 +25,7 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        "brand-red": "#C8141C",
+        "brand-red": "#ca4235",
         "brand-green": "#31B800",
         "brand-black": "#0A0A0A",
         "brand-white": "#FFFFFF",

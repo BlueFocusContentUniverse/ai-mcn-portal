@@ -159,7 +159,7 @@ export default function CaseDetailPage({ params }: CaseDetailPageProps) {
                     </span>
                   </div>
 
-                  <h1 className="text-4xl md:text-6xl font-bold mb-6 text-shadow-glow">{caseStudy.title}</h1>
+                  <h1 className="text-4xl md:text-6xl font-bold mb-6">{caseStudy.title}</h1>
 
                   <p className="text-xl text-gray-300 mb-8 leading-relaxed">{caseStudy.fullDescription}</p>
 

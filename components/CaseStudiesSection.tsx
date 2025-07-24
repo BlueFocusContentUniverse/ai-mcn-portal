@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { VideoGallery } from "./VideoGallery";
 import { AnimatedNumber } from "./AnimatedNumber";
 
 // A custom hook to detect if an element is in the viewport
@@ -89,10 +90,11 @@ export function CaseStudiesSection({ className = "" }: CaseStudiesSectionProps) 
     >
       <div className="max-w-7xl mx-auto text-center mb-16">
         <h2 className="section-title">
-          <span className="section-gradient-text">{t("caseStudies.title")}</span>
+          <span className="section-text-brand-red">{t("caseStudies.title")}</span>
         </h2>
         <p className="section-subtitle">{t("caseStudies.subtitle")}</p>
       </div>
+      <VideoGallery />
       <div className="grid md:grid-cols-3 gap-8">
         {caseStudies.map((caseStudy, index) => (
           <Link key={caseStudy.id} href={`/cases/${caseStudy.id}`} className="block group">
