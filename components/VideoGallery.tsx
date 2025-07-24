@@ -140,7 +140,7 @@ export function VideoGallery({ className = "" }: VideoGalleryProps) {
               <div className="aspect-video bg-gray-200 dark:bg-gray-800">
                 <video
                   src={videoThumbnails.find((v) => v.id === selectedVideo)?.videoUrl}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full"
                   controls
                   disableRemotePlayback
                   playsInline
