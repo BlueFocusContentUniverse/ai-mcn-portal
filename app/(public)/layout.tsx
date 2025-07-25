@@ -41,7 +41,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
                   className="logo-dark animate-pulse"
                 />
               </div>
-              <span className="text-2xl font-bold text-gray-900 dark:text-white">Tomato Planet</span>
+              <span className="text-2xl font-bold text-gray-900 dark:text-white">Ketchup</span>
             </div>
             <div className="flex items-center space-x-16 ml-8">
               <Link href="/" className="nav-link text-lg font-bold">
@@ -81,7 +81,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
               {/* Dark mode logo */}
               <Image src="/logo-white.png" alt="AI MCN Logo" width={48} height={48} className="logo-dark" />
             </div>
-            <span className="text-xl font-bold text-gray-900 dark:text-white">Tomato Planet</span>
+            <span className="text-xl font-bold text-gray-900 dark:text-white">Ketchup</span>
           </div>
           <div className="flex space-x-8">
             <Link href="https://beian.miit.gov.cn/" className="nav-link">
@@ -91,7 +91,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
               {t("nav.about", { ns: "navigation" })}
             </Link>
           </div>
-          <p className="text-gray-500">&copy; {new Date().getFullYear()} Tomato Planet. All rights reserved.</p>
+          <p className="text-gray-500">&copy; {new Date().getFullYear()} Ketchup. All rights reserved.</p>
         </div>
       </footer>
     </div>

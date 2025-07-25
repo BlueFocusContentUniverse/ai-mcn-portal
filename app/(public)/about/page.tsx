@@ -12,7 +12,7 @@ export default function AboutPage() {
       <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-8">
-            <span className="section-text-brand-red">{t("hero.title", { defaultValue: "About Tomato Planet" })}</span>
+            <span className="section-text-brand-red">{t("hero.title", { defaultValue: "About Ketchup" })}</span>
           </h1>
 
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
