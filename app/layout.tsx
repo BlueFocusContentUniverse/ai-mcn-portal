@@ -13,8 +13,8 @@ import { cookieName } from "@/lib/i18n/settings";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Tomato AI MCN - The Future of Content",
-  description: "Tomato is an AI MCN platform.",
+  title: "Ketchup - with the trend",
+  description: "Ketchup is an AI MCN platform.",
   generator: "Tomato",
   icons: {
     icon: [
