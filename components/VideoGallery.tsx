@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 interface VideoThumbnail {
@@ -16,67 +16,57 @@ interface VideoGalleryProps {
 }
 
 export function VideoGallery({ className = "" }: VideoGalleryProps) {
-  const { t } = useTranslation(["home"]);
+  const { i18n } = useTranslation();
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [playingVideos, setPlayingVideos] = useState<Set<string>>(new Set());
   const [loadedVideos, setLoadedVideos] = useState<Set<string>>(new Set());
   const [isLoading, setIsLoading] = useState(true);
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const videoThumbnails: VideoThumbnail[] = [
-    {
-      id: "video-1",
-      videoUrl: "/video/gallery/1.mp4",
-      textColor: "text-white",
-      posterUrl: "/placeholder.jpg",
-    },
-    {
-      id: "video-2",
-      videoUrl: "/video/gallery/2.mp4",
-      textColor: "text-white",
-      posterUrl: "/placeholder.jpg",
-    },
-    {
-      id: "video-3",
-      videoUrl: "/video/gallery/3.mp4",
-      textColor: "text-orange-500",
-      posterUrl: "/placeholder.jpg",
-    },
-    {
-      id: "video-4",
-      videoUrl: "/video/gallery/4.mp4",
-      textColor: "text-green-500",
-      posterUrl: "/placeholder.jpg",
-    },
-    {
-      id: "video-5",
-      videoUrl: "/video/gallery/5.mp4",
-      textColor: "text-orange-500",
-      posterUrl: "/placeholder.jpg",
-    },
-    {
-      id: "video-6",
-      videoUrl: "/video/gallery/6.mp4",
-      textColor: "text-purple-500",
-      posterUrl: "/placeholder.jpg",
-    },
-    {
-      id: "video-7",
-      videoUrl: "/video/gallery/7.mp4",
-      textColor: "text-purple-500",
-      posterUrl: "/placeholder.jpg",
-    },
-  ];
+  const videoThumbnails: VideoThumbnail[] = useMemo(() => {
+    const isEnglish = i18n.language?.toLowerCase().startsWith("en");
+    if (isEnglish) {
+      return [
+        { id: "video-1", videoUrl: "/video/gallery/6.mp4", textColor: "text-white", posterUrl: "/placeholder.jpg" },
+        { id: "lang-1", videoUrl: "/video/gallery/lang-1.mp4", textColor: "text-white", posterUrl: "/placeholder.jpg" },
+        { id: "lang-2", videoUrl: "/video/gallery/lang-2.mp4", textColor: "text-white", posterUrl: "/placeholder.jpg" },
+        { id: "lang-3", videoUrl: "/video/gallery/lang-3.mp4", textColor: "text-white", posterUrl: "/placeholder.jpg" },
+        { id: "lang-4", videoUrl: "/video/gallery/lang-4.mp4", textColor: "text-white", posterUrl: "/placeholder.jpg" },
+        {
+          id: "video-7",
+          videoUrl: "/video/gallery/7.mp4",
+          textColor: "text-purple-500",
+          posterUrl: "/placeholder.jpg",
+        },
+      ];
+    }
+    return [
+      { id: "video-1", videoUrl: "/video/gallery/1.mp4", textColor: "text-white", posterUrl: "/placeholder.jpg" },
+      { id: "video-2", videoUrl: "/video/gallery/2.mp4", textColor: "text-white", posterUrl: "/placeholder.jpg" },
+      { id: "video-3", videoUrl: "/video/gallery/3.mp4", textColor: "text-orange-500", posterUrl: "/placeholder.jpg" },
+      { id: "video-4", videoUrl: "/video/gallery/4.mp4", textColor: "text-green-500", posterUrl: "/placeholder.jpg" },
+      { id: "video-5", videoUrl: "/video/gallery/5.mp4", textColor: "text-orange-500", posterUrl: "/placeholder.jpg" },
+      { id: "video-6", videoUrl: "/video/gallery/6.mp4", textColor: "text-purple-500", posterUrl: "/placeholder.jpg" },
+      { id: "video-7", videoUrl: "/video/gallery/7.mp4", textColor: "text-purple-500", posterUrl: "/placeholder.jpg" },
+    ];
+  }, [i18n.language]);
 
   // Intersection Observer for lazy loading
   useEffect(() => {
-    observerRef.current = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const videoId = entry.target.getAttribute("data-video-id");
-            if (videoId && !loadedVideos.has(videoId)) {
-              setLoadedVideos((prev) => new Set(prev).add(videoId));
+            if (videoId) {
+              setLoadedVideos((prev) => {
+                if (prev.has(videoId)) return prev;
+                const next = new Set(prev);
+                next.add(videoId);
+                return next;
+              });
+              observer.unobserve(entry.target);
             }
           }
         });
@@ -87,12 +77,14 @@ export function VideoGallery({ className = "" }: VideoGalleryProps) {
       },
     );
 
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-    };
-  }, [loadedVideos]);
+    observerRef.current = observer;
+
+    // Observe any existing items already rendered before this effect runs
+    const nodes = containerRef.current?.querySelectorAll<HTMLElement>("[data-video-id]") ?? [];
+    nodes.forEach((node) => observer.observe(node));
+
+    return () => observer.disconnect();
+  }, []);
 
   // Simulate backend loading delay
   useEffect(() => {
@@ -144,11 +136,11 @@ export function VideoGallery({ className = "" }: VideoGalleryProps) {
       <div className="max-w-7xl mx-auto">
         <div className="relative">
           {/* Gradient overlays for left and right edges */}
-          <div className="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
           {/* Video container */}
-          <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+          <div ref={containerRef} className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
             {videoThumbnails.map((video, index) => (
               <motion.div
                 key={video.id}
