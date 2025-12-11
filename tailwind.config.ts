@@ -93,8 +93,7 @@ const config = {
         "zoom-in": "zoom-in 0.3s ease-out",
       },
     },
-  },
-  plugins: [require("tailwindcss-animate")],
+  }
 } satisfies Config;
 
 export default config;
