@@ -11,9 +11,6 @@ WORKDIR /app
 # Copy only package-related files first to leverage Docker caching
 COPY . .
 
-# Set build-time environment variables
-ENV NODE_ENV=production
-
 
 # Install dependencies using npm ci (ensures a clean, reproducible install)
 RUN npm ci && npm cache clean --force
@@ -49,6 +46,8 @@ COPY --from=base /app/public ./public
 
 # Expose port 80 to allow HTTP traffic
 EXPOSE 80
+
+ENV TZ=Asia/Shanghai
 
 # Start the application using the standalone server
 ENTRYPOINT ["node", "server.js"]
