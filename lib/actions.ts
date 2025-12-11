@@ -3,8 +3,6 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
-import { prisma } from "@/prisma";
-
 // Unified validation schema for contact form
 const contactFormSchema = z.object({
   serviceType: z.enum(["brand", "creator"]),
@@ -187,39 +185,6 @@ export async function submitContactForm(formData: FormData) {
   } = validatedFields.data;
 
   try {
-    if (serviceType === "brand") {
-      // Submit brand application
-      await prisma.brandApplication.create({
-        data: {
-          brandName: brandName || name,
-          industry: "OTHER",
-          otherIndustry: null,
-          companySize: "STARTUP",
-          website: null,
-          description: message || "",
-          contactType: "EMAIL", // Default to email for unified form
-          email: email || null,
-          phoneCountryCode: phoneCountryCode || null,
-          phoneNumber: phone || null,
-          contactName: name,
-          contactTitle: "",
-        },
-      });
-    } else {
-      // Submit creator application
-      await prisma.creatorApplication.create({
-        data: {
-          contactType: "EMAIL", // Default to email for unified form
-          email: email || "",
-          phoneCountryCode: phoneCountryCode || "",
-          phoneNumber: phone || "",
-          platform: mapPlatformToEnum(platform || "tiktok"),
-          otherPlatform: otherPlatform || "",
-          socialMediaId: socialMediaId || "",
-        },
-      });
-    }
-
     revalidatePath("/");
     return { success: `${serviceType === "brand" ? "Brand" : "Creator"} application submitted successfully!` };
   } catch (error) {
@@ -247,18 +212,6 @@ export async function submitCreatorApplication(formData: FormData) {
     validatedFields.data;
 
   try {
-    await prisma.creatorApplication.create({
-      data: {
-        contactType: contactType === "email" ? "EMAIL" : "PHONE",
-        email: email || "",
-        phoneCountryCode: phoneCountryCode || "",
-        phoneNumber: phoneNumber || "",
-        platform: mapPlatformToEnum(platform),
-        otherPlatform: otherPlatform || "",
-        socialMediaId,
-      },
-    });
-
     revalidatePath("/");
     return { success: "Creator application submitted successfully!" };
   } catch (error) {
@@ -303,23 +256,6 @@ export async function submitBrandApplication(formData: FormData) {
   } = validatedFields.data;
 
   try {
-    await prisma.brandApplication.create({
-      data: {
-        brandName,
-        industry: mapIndustryToEnum(industry),
-        otherIndustry: otherIndustry || null,
-        companySize: mapCompanySizeToEnum(companySize ?? "startup"),
-        website: website || null,
-        description: description || "",
-        contactType: contactType === "email" ? "EMAIL" : "PHONE",
-        email: email || null,
-        phoneCountryCode: phoneCountryCode || null,
-        phoneNumber: phoneNumber || null,
-        contactName: contactName || "",
-        contactTitle: contactTitle || "",
-      },
-    });
-
     revalidatePath("/");
     return { success: "Brand application submitted successfully!" };
   } catch (error) {

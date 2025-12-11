@@ -202,7 +202,7 @@ export function ClientLogoCarousel({ className = "" }: ClientLogoCarouselProps) 
             <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
               <AnimatedNumber value={1300000} duration={2} />+
             </div>
-            <div className="text-gray-500 dark:text-gray-400">{t("client.contentPiecesCreated", { ns: "home" })}</div>
+            <div className="text-gray-500 dark:text-gray-400">{t("common.loading")}</div>
           </div>
           <div className="text-center">
             <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">

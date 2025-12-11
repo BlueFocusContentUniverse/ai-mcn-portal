@@ -1,14 +1,12 @@
 import { createInstance } from "i18next";
 import ResourcesToBackend from "i18next-resources-to-backend";
 import { cookies } from "next/headers";
-import { initReactI18next } from "react-i18next";
 
 import { cookieName, defaultNS, fallbackLng, languages } from "./settings";
 
 const i18next = createInstance();
 
 i18next
-  .use(initReactI18next)
   .use(
     ResourcesToBackend(
       (language: string, namespace: string) => import(`../../public/locales/${language}/${namespace}.json`),

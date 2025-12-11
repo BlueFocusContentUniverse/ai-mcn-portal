@@ -38,9 +38,6 @@ RUN npm run build
 # Use the same Node.js version for the final production container
 FROM node:lts-slim AS runner
 
-# Install OpenSSL and other necessary packages
-RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
-
 # Use a built-in non-root user for security best practices
 USER node
 
